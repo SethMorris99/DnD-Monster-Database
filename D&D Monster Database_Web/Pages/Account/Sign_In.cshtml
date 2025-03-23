@@ -1,0 +1,34 @@
+﻿@page
+@model D_D_Monster_Database_Web.Pages.Account.Sign_InModel
+@{
+}
+
+<div class="row">
+	<div class="col-12">
+		<label class="form-label fs-1">Sign In</label>
+	</div>
+	
+</div>
+<form method="post">
+	<div class="row my-2">
+		<div class="col-4">
+			<label asp-for="Login.Username" class="form-label"></label>
+		</div>
+		<div class="col-12">
+			<input asp-for="Login.Username" type="text" class="form-control" />
+		</div>
+	</div>
+	<div class="row my-2">
+		<div class="col-4">
+			<label asp-for="Login.Password" class="form-label"></label>
+		</div>
+		<div class="col-12">
+			<input asp-for="Login.Password" type="password" class="form-control" />
+		</div>
+	</div>
+	<div class="row my-4">
+		<div class="col-12">
+			<button type="submit" class="form-control btn btn-primary">Sign In</button>
+		</div>
+	</div>
+</form>
