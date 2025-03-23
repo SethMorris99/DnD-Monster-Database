@@ -11,6 +11,7 @@ namespace D_D_Monster_Database_Web.Model
 
         public string Password { get; set; }
 
+        [Display(Name = "Confirm Password")]
         public string ConfirmPassword { get; set; }
     }
 }
