@@ -7,8 +7,8 @@ namespace D_D_Monster_Database_Web.Pages.Account
 {
     public class RegistrationModel : PageModel
     {
-        [BindProperty]
-        public RegisterUser User { get; set; } = new RegisterUser();
+        
+        public Registration NewUser { get; set; }
 
         public void OnGet()
         {
@@ -25,20 +25,5 @@ namespace D_D_Monster_Database_Web.Pages.Account
             // Save to database (add database logic here)
             return RedirectToPage("Sign_In");
         }
-    }
-
-    public class RegisterUser
-    {
-        [Required]
-        public string Username { get; set; }
-
-        [Required, EmailAddress]
-        public string Email { get; set; }
-
-        [Required, DataType(DataType.Password)]
-        public string Password { get; set; }
-
-        [Required, Compare("Password", ErrorMessage = "Passwords do not match")]
-        public string ConfirmPassword { get; set; }
     }
 }

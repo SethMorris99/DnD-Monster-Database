@@ -1,33 +1,52 @@
 ﻿@page
 @model D_D_Monster_Database_Web.Pages.Account.RegistrationModel
 @{
-    ViewData["Title"] = "Register";
 }
-<h2>Register</h2>
-<p>Kindly fill in this form to register</p>
-
+<div class="row">
+    <div class="col-12">
+        <label class="form-label fs-1">Register</label>
+    </div>
+</div>
 <form method="post">
-    <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" asp-for="User.Username" required>
+    <div class="row">
+        <div class="col-4">
+            <label asp-for="NewUser.Username"class="form-label"></label>
+        </div>
+        <div class = "col-12">
+            <input asp-for="NewUser.Username" type="text" class=" form-control" />
+        </div>
     </div>
-
-    <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" asp-for="User.Email" required>
+    <div class="row">
+        <div class="col-4">
+            <label asp-for="NewUser.Email" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="NewUser.Email" type="text" class=" form-control" />
+        </div>
     </div>
-
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" asp-for="User.Password" required>
+    <div class="row">
+        <div class="col-4">
+            <label asp-for="NewUser.Password" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="NewUser.Password" type="text" class=" form-control" />
+        </div>
     </div>
-
-    <div>
-        <label for="confirm-password">Confirm Password:</label>
-        <input type="password" id="confirm-password" asp-for="User.ConfirmPassword" required>
+    <div class="row">
+        <div class="col-4">
+            <label asp-for="NewUser.ConfirmPassword" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="NewUser.ConfirmPassword" type="text" class=" form-control" />
+        </div>
     </div>
-
-    <button type="submit">Register</button>
+    <div class="row my-2">
+        <div class="col-12">
+            <button type="submit" class="form-control btn btn-primary" style="background-color: #6f42c1; border-color: #6f42c1;">Register</button>
+        </div>
 </form>
 
+
 <p>Already have an account? <a asp-page="Sign_In">Login</a></p>
+<p>Forgot password? <a asp-page="Forgot_Password">Forgot_Password</a></p>
+
