@@ -2,6 +2,7 @@ using D_D_Monster_Database_Web.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
+using MonsterDB_Business;
 
 
 namespace D_D_Monster_Database_Web.Pages.Account
@@ -23,10 +24,10 @@ namespace D_D_Monster_Database_Web.Pages.Account
             {
                 //Save to Database 
                 //1. Create a connection to the databse 
-                string connectionString = "Server=(localdb)\\MSSQLLocalDB; Database=MonsterDatabase;Trusted_Connection = True;";
+               // string connectionString = "Server=(localdb)\\MSSQLLocalDB; Database=MonsterDatabase;Trusted_Connection = True;";
                 
                 //make a local variable 
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
                 {
                     //2. Create a command to insert the data
                     string cmdText = "INSERT INTO SystemUser (SystemUserID, AccountTypeID,UserFirstName,UserLastName,UserProfileImage, UserEmail, UserPassword) VALUES (@SystemUserID, @AccountTypeID, @UserFirstName,@UserLastName,@UserProfileImage, @UserEmail, @UserPassword)";
@@ -37,7 +38,7 @@ namespace D_D_Monster_Database_Web.Pages.Account
                     cmd.Parameters.AddWithValue("@UserLastName", NewUser.Username);
                     cmd.Parameters.AddWithValue("@UserProfileImage", "default.jpg");
                     cmd.Parameters.AddWithValue("@UserEmail", NewUser.Email);
-                    cmd.Parameters.AddWithValue("@UserPassword", NewUser.Password);
+                    cmd.Parameters.AddWithValue("@UserPassword", AppHelper.GeneratePasswordHash(NewUser.Password));
 
                     //3. Execute the command 
                     cmd.ExecuteNonQuery();
