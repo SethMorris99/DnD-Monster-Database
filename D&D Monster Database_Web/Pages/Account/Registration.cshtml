@@ -2,42 +2,46 @@
 @model D_D_Monster_Database_Web.Pages.Account.RegistrationModel
 @{
 }
-<div class="row">
+<div class="row text-center">
     <div class="col-12">
         <label class="form-label fs-1">Register</label>
     </div>
 </div>
 <form method="post">
-    <div class="row">
+    <div class="row my-2">
         <div class="col-4">
             <label asp-for="NewUser.Username"class="form-label"></label>
         </div>
         <div class = "col-12">
             <input asp-for="NewUser.Username" type="text" class=" form-control" />
+            <span asp-validation-for="NewUser.Username" class="text-danger"></span>
         </div>
     </div>
-    <div class="row">
+    <div class="row my-2">
         <div class="col-4">
             <label asp-for="NewUser.Email" class="form-label"></label>
         </div>
         <div class="col-12">
             <input asp-for="NewUser.Email" type="text" class=" form-control" />
+            <span asp-validation-for="NewUser.Email" class="text-danger"></span>
         </div>
     </div>
-    <div class="row">
+    <div class="row my-2">
         <div class="col-4">
             <label asp-for="NewUser.Password" class="form-label"></label>
         </div>
         <div class="col-12">
             <input asp-for="NewUser.Password" type="text" class=" form-control" />
+            <span asp-validation-for="NewUser.Password" class="text-danger"></span>
         </div>
     </div>
-    <div class="row">
+    <div class="row my-2">
         <div class="col-4">
             <label asp-for="NewUser.ConfirmPassword" class="form-label"></label>
         </div>
         <div class="col-12">
             <input asp-for="NewUser.ConfirmPassword" type="text" class=" form-control" />
+            <span asp-validation-for="NewUser.ConfirmPassword" class="text-danger"></span>
         </div>
     </div>
     <div class="row my-2">
