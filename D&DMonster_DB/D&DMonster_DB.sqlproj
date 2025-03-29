@@ -62,7 +62,7 @@
     <Folder Include="dbo\Tables\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\MonsterAbilitiy.sql" />
+    <Build Include="dbo\Tables\MonsterAbility.sql" />
     <Build Include="dbo\Tables\User.sql" />
     <Build Include="dbo\Tables\SystemUser.sql" />
     <Build Include="dbo\Tables\SourceBook.sql" />
