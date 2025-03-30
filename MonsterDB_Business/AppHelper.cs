@@ -13,10 +13,10 @@ namespace MonsterDB_Business
             return "Server=(localdb)\\MSSQLLocalDB; Database=MonsterDatabase;Trusted_Connection = True;";
         }
 
-        public string GeneraatePasswordHash(string password)
+        public static string GeneratePasswordHash(string password)
         {
-            string passswordHash = BCrypt.Net.BCrypt.EnhancedHashPassword(password);
-            return passswordHash;
+            string passwordHash = BCrypt.Net.BCrypt.EnhancedHashPassword(password);
+            return passwordHash;
 
         }
         public static bool VerifyPassword(string password, string correctHash)

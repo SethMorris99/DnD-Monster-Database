@@ -38,13 +38,13 @@ namespace D_D_Monster_Database_Web.Pages.Account
                         }
                         else
                         {
-                            ModelState.AddModelError("LoginError", "Invalid credintials.");
+                            ModelState.AddModelError("LoginError", "Invalid credentials.");
                             return Page();
                         }
                     }
                     else
                     {
-                        ModelState.AddModelError("LoginError", "Invalid credintials.");
+                        ModelState.AddModelError("LoginError", "Invalid credentials.");
                         return Page();
                     }
                 }
