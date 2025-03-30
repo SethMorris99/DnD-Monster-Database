@@ -3,6 +3,7 @@
     [AccountTypeID]    INT             NOT NULL,
     [UserFirstName]    NVARCHAR (50)   NOT NULL,
     [UserLastName]     NVARCHAR (50)   NOT NULL,
+    [UserDisplayName]  NVARCHAR (50)   NOT NULL,
     [UserProfileImage] NVARCHAR (50)   NULL,
     [UserEmail]        NVARCHAR (200)  NOT NULL,
     [UserPassword]     NVARCHAR (100)  NOT NULL,

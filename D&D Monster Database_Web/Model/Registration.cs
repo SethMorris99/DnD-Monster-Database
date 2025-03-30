@@ -4,7 +4,12 @@ namespace D_D_Monster_Database_Web.Model
 {
     public class Registration
     {
-        [Display(Name = "Username")]
+        [Display(Name = "First Name")]
+        [Required(ErrorMessage = "First Name is required")]
+        public String firstName { get; set; }
+        [Required(ErrorMessage = "Last Name is required")]
+        [Display(Name = "Last Name")]
+        public String lastName { get; set; }
         [Required(ErrorMessage = "Username is required")]
         public string Username { get; set; }
         

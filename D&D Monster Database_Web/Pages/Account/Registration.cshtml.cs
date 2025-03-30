@@ -30,16 +30,25 @@ namespace D_D_Monster_Database_Web.Pages.Account
                 using (SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
                 {
                     //2. Create a command to insert the data
-                    string cmdText = "INSERT INTO SystemUser (AccountTypeID,UserFirstName,UserLastName,UserProfileImage,ProfileImageURL, UserEmail, UserPassword) VALUES (@AccountTypeID, @UserFirstName,@UserLastName,@UserProfileImage,@ProfileImageURL, @UserEmail, @UserPassword)";
+                    string cmdText = "INSERT INTO SystemUser (AccountTypeID,UserFirstName,UserLastName,UserDisplayName,UserProfileImage,ProfileImageURL, UserEmail, UserPassword) VALUES (@AccountTypeID, @UserFirstName,@UserLastName,@UserDisplayName,@UserProfileImage,@ProfileImageURL, @UserEmail, @UserPassword)";
                     SqlCommand cmd = new SqlCommand(cmdText, conn);
                     conn.Open();
                     cmd.Parameters.AddWithValue("@AccountTypeID", 1);
-                    cmd.Parameters.AddWithValue("@UserFirstName", NewUser.Username);
-                    cmd.Parameters.AddWithValue("@UserLastName", NewUser.Username);
+                    cmd.Parameters.AddWithValue("@UserFirstName", NewUser.firstName);
+                    cmd.Parameters.AddWithValue("@UserLastName", NewUser.lastName);
+                    cmd.Parameters.AddWithValue("@UserDisplayName", NewUser.Username);
                     cmd.Parameters.AddWithValue("@UserProfileImage", "default.jpg");
                     cmd.Parameters.AddWithValue("@ProfileImageURL", AppHelper.GetDefaultProfilePicture());
                     cmd.Parameters.AddWithValue("@UserEmail", NewUser.Email);
                     cmd.Parameters.AddWithValue("@UserPassword", AppHelper.GeneratePasswordHash(NewUser.Password));
+                    // check if the password and confirm password match
+                    // no need to use hashing or hide that the error was due to password mismatch
+                    // since it is registration and not login
+                    if (NewUser.Password != NewUser.ConfirmPassword)
+                    {
+                        ModelState.AddModelError("PasswordError", "Passwords do not match.");
+                        return Page();
+                    }
 
                     //3. Execute the command 
                     cmd.ExecuteNonQuery();

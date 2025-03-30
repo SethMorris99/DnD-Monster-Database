@@ -23,18 +23,18 @@ namespace D_D_Monster_Database_Web.Pages.Account
                 //If the user is not in the database, redirect to the sign in page
                 using (SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString())) 
                 { 
-                    string cmdText = "SELECT UserID UserPassword FROM [SystemUser] WHERE UserEmail = @UserEmail";
+                    string cmdText = "SELECT SystemUserID, UserPassword FROM [SystemUser] WHERE UserDisplayName = @UserDisplayName";
                     SqlCommand cmd = new SqlCommand(cmdText, conn);
-                    cmd.Parameters.AddWithValue("@UserEmail", Login.Username);
+                    cmd.Parameters.AddWithValue("@UserDisplayName", Login.Username);
                     conn.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.HasRows)
                     {
                         reader.Read();
                         string passwordHash = reader.GetString(1);
-                        if (AppHelper.VerifyPassword(Login.Username, passwordHash))
+                        if (AppHelper.VerifyPassword(Login.Password, passwordHash))
                         {
-                            return RedirectToPage("Account/Profile");
+                            return RedirectToPage("/Account/Profile");
                         }
                         else
                         {

@@ -63,7 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\MonsterAbility.sql" />
-    <Build Include="dbo\Tables\User.sql" />
     <Build Include="dbo\Tables\SystemUser.sql" />
     <Build Include="dbo\Tables\SourceBook.sql" />
     <Build Include="dbo\Tables\SavingThrow.sql" />
@@ -74,5 +73,8 @@
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Data-Import.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="D&amp;DMonster_DB.refactorlog" />
   </ItemGroup>
 </Project>

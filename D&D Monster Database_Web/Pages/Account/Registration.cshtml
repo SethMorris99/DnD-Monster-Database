@@ -9,10 +9,29 @@
 </div>
 <form method="post">
     <div class="row my-2">
+        <div class="text-danger" asp-validation-summary="All"></div>
         <div class="col-4">
-            <label asp-for="NewUser.Username"class="form-label"></label>
+            <label asp-for="NewUser.firstName"class="form-label"></label>
         </div>
         <div class = "col-12">
+            <input asp-for="NewUser.firstName" type="text" class=" form-control" />
+            <span asp-validation-for="NewUser.firstName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="NewUser.lastName" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="NewUser.lastName" type="text" class=" form-control" />
+            <span asp-validation-for="NewUser.lastName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="NewUser.Username" class="form-label"></label>
+        </div>
+        <div class="col-12">
             <input asp-for="NewUser.Username" type="text" class=" form-control" />
             <span asp-validation-for="NewUser.Username" class="text-danger"></span>
         </div>
