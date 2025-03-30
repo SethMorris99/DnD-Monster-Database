@@ -30,13 +30,14 @@ namespace D_D_Monster_Database_Web.Pages.Account
                 using (SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
                 {
                     //2. Create a command to insert the data
-                    string cmdText = "INSERT INTO SystemUser (SystemUserID, AccountTypeID,UserFirstName,UserLastName,UserProfileImage, UserEmail, UserPassword) VALUES (@SystemUserID, @AccountTypeID, @UserFirstName,@UserLastName,@UserProfileImage, @UserEmail, @UserPassword)";
+                    string cmdText = "INSERT INTO SystemUser (AccountTypeID,UserFirstName,UserLastName,UserProfileImage,ProfileImageURL, UserEmail, UserPassword) VALUES (@AccountTypeID, @UserFirstName,@UserLastName,@UserProfileImage,@ProfileImageURL, @UserEmail, @UserPassword)";
                     SqlCommand cmd = new SqlCommand(cmdText, conn);
-                    cmd.Parameters.AddWithValue("@SystemUserID", 1);
+                    conn.Open();
                     cmd.Parameters.AddWithValue("@AccountTypeID", 1);
                     cmd.Parameters.AddWithValue("@UserFirstName", NewUser.Username);
                     cmd.Parameters.AddWithValue("@UserLastName", NewUser.Username);
                     cmd.Parameters.AddWithValue("@UserProfileImage", "default.jpg");
+                    cmd.Parameters.AddWithValue("@ProfileImageURL", AppHelper.GetDefaultProfilePicture());
                     cmd.Parameters.AddWithValue("@UserEmail", NewUser.Email);
                     cmd.Parameters.AddWithValue("@UserPassword", AppHelper.GeneratePasswordHash(NewUser.Password));
 

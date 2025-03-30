@@ -12,6 +12,10 @@ namespace MonsterDB_Business
         {
             return "Server=(localdb)\\MSSQLLocalDB; Database=MonsterDatabase;Trusted_Connection = True;";
         }
+        public static string GetDefaultProfilePicture()
+        {
+            return "https:///static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg";
+        }
 
         public static string GeneratePasswordHash(string password)
         {
