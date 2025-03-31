@@ -4,10 +4,47 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <button class=" btn btn-primary">Update</button>
-    <button class="btn btn-danger">Delete</button>
-    <button class="btn btn-success">Create</button>
+<div class="header text-center py-4 bg-dark text-white">
+    <h1 class="display-4">D&D Monster Database</h1>
+</div>
+
+<div class="container text-center my-4">
+    <h2 class="mt-4 text-primary">Welcome to the Monster Database</h2>
+    <p class="lead text-secondary">Explore a vast collection of legendary creatures from the D&D universe. Whether you're a Dungeon Master or a player, this is your ultimate resource.</p>
+
+    <div class="d-flex justify-content-center">
+        <form class="row g-2 justify-content-center p-4 bg-light shadow rounded w-100 mx-auto">
+            <h3 class="col-12 text-center text-danger">Search for Monsters</h3>
+            <div class="col-lg-10 col-md-10 col-sm-10">
+                <label for="monster-name" class="form-label fw-bold">Monster Name:</label>
+                <input type="text" id="monster-name" name="monster-name" class="form-control" placeholder="Enter monster name..." />
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-10">
+                <label for="monster-type" class="form-label fw-bold">Monster Type:</label>
+                <select id="monster-type" name="monster-type" class="form-select">
+                    <option value="">Select a type</option>
+                    <option value="dragon">Dragon</option>
+                    <option value="goblin">Goblin</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-10">
+                <label for="monster-cr" class="form-label fw-bold">Challenge Rating (CR):</label>
+                <input type="number" id="monster-cr" name="monster-cr" class="form-control" placeholder="Enter CR..." />
+            </div>
+            <div class="col-lg-10 col-md-10 col-10 d-flex align-items-end">
+                <button type="submit" class="btn w-100 text-white" style="background-color: #6f42c1; border-color: #6f42c1;">Search</button>
+            </div>
+        </form>
+    </div>
+
+
+    <h3 class="mt-5 text-success">Discover Featured Monsters</h3>
+    <ul class="list-unstyled text-dark">
+        <li><strong class="text-danger">Ancient Dragon</strong> - Fearsome and wise, ruling the skies.</li>
+        <li><strong class="text-warning">Mind Flayer</strong> - Masters of psionics and nightmares.</li>
+        <li><strong class="text-info">Lich</strong> - An undead sorcerer wielding forbidden magic.</li>
+    </ul>
+
+    <a href="/explore" class="btn btn-success mt-3">Explore Now</a>
 </div>
