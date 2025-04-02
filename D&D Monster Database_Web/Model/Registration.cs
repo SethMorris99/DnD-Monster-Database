@@ -21,6 +21,7 @@ namespace D_D_Monster_Database_Web.Model
 
         [Display(Name = "Confirm Password")]
         [Required(ErrorMessage = "Please confirm password")]
+        [Compare("Password", ErrorMessage = "Passwords do not match")]
         public string ConfirmPassword { get; set; }
     }
 }
