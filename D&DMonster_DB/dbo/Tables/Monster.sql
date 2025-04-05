@@ -13,6 +13,7 @@
     [Description]      TEXT            NOT NULL,
     [ImageURL]         NVARCHAR (2083) NOT NULL,
     [UserID]           INT             NOT NULL,
+    [Genre] INT NOT NULL, 
     CONSTRAINT [PK_Monsters] PRIMARY KEY CLUSTERED ([MonsterID] ASC),
     CONSTRAINT [FK_Monsters_SourceBook] FOREIGN KEY ([SourceBookID]) REFERENCES [dbo].[SourceBook] ([SourceBookID])
 );

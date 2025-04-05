@@ -1,0 +1,147 @@
+﻿@page
+@model D_D_Monster_Database_Web.Pages.Monsters.AddMonsterModel
+@{
+}
+
+<div class="row text-center">
+    <div class="col-12">
+        <label class="form-label fs-1">Add Your Monster</label>
+    </div>
+</div>
+<form method="post">
+    <div class="row my-2">
+        <div class="text-danger" asp-validation-summary="All"></div>
+        <div class="col-4">
+            <label asp-for="NewMonster.MonsterName" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="NewMonster.MonsterName" type="text" class=" form-control" />
+            <span asp-validation-for="NewMonster.MonsterName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="NewMonster.ArmorClass" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="NewMonster.ArmorClass" type="text" class=" form-control" />
+            <span asp-validation-for="NewMonster.ArmorClass" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="NewMonster.HitDice" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="NewMonster.HitDice" type="text" class=" form-control" />
+            <span asp-validation-for="NewMonster.HitDice" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="NewMonster.Attacks" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="NewMonster.Attacks" type="text" class=" form-control" />
+            <span asp-validation-for="NewMonster.Attacks" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2"> 
+        <div class="col-4">
+            <label asp-for="NewMonster.XP_Award" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="NewMonster.XP_Award" type="text" class=" form-control" />
+            <span asp-validation-for="NewMonster.XP_Award" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="NewMonster.NumberAppearing" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="NewMonster.NumberAppearing" type="text" class=" form-control" />
+            <span asp-validation-for="NewMonster.NumberAppearing" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="NewMonster.TreasureType" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="NewMonster.TreasureType" type="text" class=" form-control" />
+            <span asp-validation-for="NewMonster.TreasureType" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="NewMonster.SpecialAbilities" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="NewMonster.SpecialAbilities" type="text" class=" form-control" />
+            <span asp-validation-for="NewMonster.SpecialAbilities" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="NewMonster.Description" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="NewMonster.Description" type="text" class=" form-control" />
+            <span asp-validation-for="NewMonster.Description" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="NewMonster.ImageURL" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="NewMonster.ImageURL" type="text" class=" form-control" />
+            <span asp-validation-for="NewMonster.ImageURL" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="NewMonster.UserID" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="NewMonster.UserID" type="text" class=" form-control" />
+            <span asp-validation-for="NewMonster.UserID" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="NewMonster.SourceBookID" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <select asp-for="NewMonster.SourceBookID" class="form-control" asp-items = "Model.SourceBook"></select>
+            <span asp-validation-for="NewMonster.SourceBookID" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="NewMonster.TreasureType" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <select asp-for="NewMonster.TreasureType" class="form-control" asp-items="Model.SourceBook"></select>
+            <span asp-validation-for="NewMonster.TreasureType" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label class="form-label"></label>
+        </div>
+        <div class="col-12"> 
+            @foreach (var g in Model.Genres)
+            {
+                <input type="checkbox" value="@g.GenreID" class="form-check-input" name="SelectedGenreID" checked="@g.IsSelected"/>
+                <label class="form-label">@g.GenreName</label>
+            }
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-12">
+            <button type="submit" class="form-control btn btn-primary" style="background-color: #6f42c1; border-color: #6f42c1;">Add Monster</button>
+        </div>
+    </div>
+    </form>

@@ -70,6 +70,7 @@
     <Build Include="dbo\Tables\Encounter.sql" />
     <Build Include="dbo\Tables\AccountType.sql" />
     <Build Include="dbo\Tables\Monster.sql" />
+    <Build Include="dbo\Tables\Genre.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Data-Import.sql" />
