@@ -50,7 +50,7 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
                         var genre = new GenreInfo();
                         genre.GenreID = int.Parse(reader["GenreID"].ToString());
                         genre.GenreName = reader["GenreName"].ToString();
-                        genre.IsSelected = true;
+                        genre.IsSelected = false;
                         Genres.Add(genre);
                     }
 

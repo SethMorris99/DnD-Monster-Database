@@ -23,7 +23,7 @@ namespace D_D_Monster_Database_Web.Model
         public int HitDice { get; set; }
 
 
-        public int Attacks { get; set; }
+        public string Attacks { get; set; }
 
         [Display(Name = "XP Awards")]
 
@@ -31,21 +31,21 @@ namespace D_D_Monster_Database_Web.Model
 
         [Display(Name = "Number Appering")]
 
-        public int NumberAppearing { get; set; }
+        public string NumberAppearing { get; set; }
 
         [Display(Name = "Treasure Type")]
 
-        public int TreasureType { get; set; }
+        public char TreasureType { get; set; }
 
         [Display(Name = "Special Abilities")]
 
-        public int SpecialAbilities { get; set; }
+        public string SpecialAbilities { get; set; }
 
 
         public string Description { get; set; }
 
         [Display(Name = "Image URL")]
-        public int ImageURL { get; set; }
+        public string ImageURL { get; set; }
 
         public int UserID { get; set; }
 
