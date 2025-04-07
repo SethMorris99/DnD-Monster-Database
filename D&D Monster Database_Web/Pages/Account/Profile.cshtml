@@ -83,12 +83,13 @@
                     <label for="lastLoginTime" class="form-label">Last Login Time:</label>
                     <input type="text" class="form-control" id="lastLoginTime" value="@Model.UserProfile.LastLoginTime.ToString("MMMM dd, yyyy hh:mm tt")" readonly />
                 </div>
-
                 <!-- Edit Button -->
-                <div class="mb-3">
-                    <button class="btn btn-primary" onclick="window.location.href='/Account/EditProfile'">Edit Profile</button>
+                <div class="row my-4">
+                    <div class="col-12">
+                        <button class="form-control btn btn-primary" style="background-color: #6f42c1; border-color: #6f42c1;" onclick="window.location.href='/Account/EditProfile'">Edit Profile</button>
+                    </div>
                 </div>
-
+               
             </div>
         </div>
     </div>
