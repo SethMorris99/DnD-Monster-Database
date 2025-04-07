@@ -15,7 +15,7 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
         // List of source books for the dropdown
         public List<SelectListItem> SourceBook { get; set; } = new List<SelectListItem>();
         // List of treasure types for the dropdown
-        public List<SelectListItem> TreasureType { get; set; } = new List<SelectListItem>();
+        //public List<SelectListItem> TreasureType { get; set; } = new List<SelectListItem>();
         // List of special abilities for the dropdown
         public List<GenreInfo> Genres { get; set; } = new List<GenreInfo>();
         // List of special abilities for the dropdown
@@ -25,6 +25,7 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
         {
             // This method is called when the page is first loaded
             PopulateSourceBookList();
+            // This method is commented out for now since we are considering adding a table for treasure types
             //PopulateTreasureTypeList();
             PopulateGenresList();
         }
@@ -89,6 +90,7 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
             }
         }
 
+        /*
         private void PopulateTreasureTypeList()
         {
             // Implementation for PopulateTreasureType
@@ -115,6 +117,7 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
                 }
             }
         }
+        */
 
         public class GenreInfo
         {
