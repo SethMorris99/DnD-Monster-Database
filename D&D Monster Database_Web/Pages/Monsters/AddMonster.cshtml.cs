@@ -29,11 +29,58 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
             //PopulateTreasureTypeList();
             PopulateGenresList();
         }
-        public void OnPost()
+        public IActionResult OnPost()
         {
-            PopulateSourceBookList();
-            //PopulateTreasureTypeList();
-            PopulateGenresList();
+            //Validate User Input
+            if (ModelState.IsValid)
+            {
+                //Save to Database 
+                //1. Create a connection to the databse 
+                // string connectionString = "Server=(localdb)\\MSSQLLocalDB; Database=MonsterDatabase;Trusted_Connection = True;";
+
+                //make a local variable 
+                using (SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
+                {
+                    //2. Create a command to insert the data
+                    string cmdText = @"INSERT INTO Monster 
+                                     (SourceBookID,MonsterName,ArmorClass,
+                                     HitDice,Attacks,Alignment,
+                                     XP_Award, NumberAppearing, TreasureType,
+                                     SpecialAbilities,Description,ImageURL, UserID, Genre)
+                                     VALUES 
+                                     (@SourceBookID,@MonsterName,@ArmorClass, @HitDice,
+                                     @Attacks,@Alignment,@XP_Award,@NumberAppearing,
+                                     @TreasureType, @SpecialAbilities,@Description,@ImageURL, @UserID, @Genre)";
+                    SqlCommand cmd = new SqlCommand(cmdText, conn);
+                    conn.Open();
+                    //TODO: make sourcebook id and genre based on selections and userid should be retrieved from user
+                    // can add [Authenticate] to the top to make sure we have a cookie and get the ID from that
+                    cmd.Parameters.AddWithValue("@SourceBookID", 1);
+                    cmd.Parameters.AddWithValue("@MonsterName", NewMonster.MonsterName);
+                    cmd.Parameters.AddWithValue("@ArmorClass", NewMonster.ArmorClass);
+                    cmd.Parameters.AddWithValue("@HitDice", NewMonster.HitDice);
+                    cmd.Parameters.AddWithValue("@Attacks", NewMonster.Attacks);
+                    cmd.Parameters.AddWithValue("@Alignment", NewMonster.Alignment);
+                    cmd.Parameters.AddWithValue("@XP_Award", NewMonster.XP_Award);
+                    cmd.Parameters.AddWithValue("@NumberAppearing", NewMonster.NumberAppearing);
+                    cmd.Parameters.AddWithValue("@TreasureType", NewMonster.TreasureType);
+                    cmd.Parameters.AddWithValue("@SpecialAbilities", NewMonster.SpecialAbilities);
+                    cmd.Parameters.AddWithValue("@Description", NewMonster.Description);
+                    cmd.Parameters.AddWithValue("@ImageURL", NewMonster.ImageURL);
+                    cmd.Parameters.AddWithValue("@UserID", 1);
+                    cmd.Parameters.AddWithValue("@Genre", 1);
+
+                    //3. Execute the command 
+                    cmd.ExecuteNonQuery();
+                }
+                //Redirect to AddMonster Page
+                return RedirectToPage("/Monsters/AddMonster");
+            }
+            else
+            {
+                //Redirect the user 
+                return Page();
+            }
         }
         private void PopulateGenresList()
         {

@@ -18,12 +18,14 @@ namespace D_D_Monster_Database_Web.Model
 
         public int ArmorClass { get; set; }
         
-        [Display(Name = "Hit Points")]
+        [Display(Name = "Hit Dice")]
 
         public int HitDice { get; set; }
 
 
         public string Attacks { get; set; }
+
+        public int Alignment { get; set; }
 
         [Display(Name = "XP Awards")]
 

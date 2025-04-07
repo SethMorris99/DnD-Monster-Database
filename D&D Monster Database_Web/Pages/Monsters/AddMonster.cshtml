@@ -46,6 +46,15 @@
             <span asp-validation-for="NewMonster.Attacks" class="text-danger"></span>
         </div>
     </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="NewMonster.Alignment" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="NewMonster.Alignment" type="text" class=" form-control" />
+            <span asp-validation-for="NewMonster.Alignment" class="text-danger"></span>
+        </div>
+    </div>
     <div class="row my-2"> 
         <div class="col-4">
             <label asp-for="NewMonster.XP_Award" class="form-label"></label>
