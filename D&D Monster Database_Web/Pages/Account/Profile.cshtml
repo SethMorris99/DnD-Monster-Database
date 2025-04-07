@@ -15,17 +15,17 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/">D&D Monster Database</a>
+            <a class="navbar-brand text-dark" href="/">D&D Monster Database</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="/Account/Profile">Profile</a>
+                        <a class="nav-link text-dark active" href="/Account/Profile">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/Account/Sign_Out">Log Out</a>
+                        <a class="nav-link text-dark" href="/Account/Sign_Out">Log Out</a>
                     </li>
                 </ul>
             </div>
@@ -34,29 +34,55 @@
 
     <div class="container mt-4">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header text-center">
                 <h2>Your Profile</h2>
             </div>
             <div class="card-body">
-                <!-- Profile Information -->
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username:</label>
-                    <input type="text" class="form-control" id="username" value="@User.Identity.Name" readonly />
+                <!-- Profile Image -->
+                <div class="text-center mb-3">
+                    <img src="@Model.UserProfile.ProfileImageURL" class="rounded-circle" style="width: 120px; height: 120px;" alt="Profile Picture" />
                 </div>
+
+                <!-- First Name -->
+                <div class="mb-3">
+                    <label for="firstName" class="form-label">First Name:</label>
+                    <input type="text" class="form-control" id="firstName" value="@Model.UserProfile.FirstName" readonly />
+                </div>
+
+                <!-- Last Name -->
+                <div class="mb-3">
+                    <label for="lastName" class="form-label">Last Name:</label>
+                    <input type="text" class="form-control" id="lastName" value="@Model.UserProfile.LastName" readonly />
+                </div>
+
+                <!-- Email -->
                 <div class="mb-3">
                     <label for="email" class="form-label">Email Address:</label>
-                    <input type="email" class="form-control" id="email" value="user@example.com" readonly />
+                    <input type="email" class="form-control" id="email" value="@Model.UserProfile.Email" readonly />
                 </div>
+
+                <!-- Account Type -->
                 <div class="mb-3">
-                    <label for="memberSince" class="form-label">Member Since:</label>
-                    <input type="text" class="form-control" id="memberSince" value="January 2025" readonly />
+                    <label for="accountType" class="form-label">Account Type:</label>
+                    <input type="text" class="form-control" id="accountType" value="@Model.UserProfile.AccountType" readonly />
                 </div>
+
+                <!-- Last Login Time -->
+                <div class="mb-3">
+                    <label for="lastLoginTime" class="form-label">Last Login Time:</label>
+                    <input type="text" class="form-control" id="lastLoginTime" value="@Model.UserProfile.LastLoginTime.ToString("MMMM dd, yyyy hh:mm tt")" readonly />
+                </div>
+
+                <!-- Edit Button -->
                 <div class="mb-3">
                     <button class="btn btn-primary" onclick="window.location.href='/Account/EditProfile'">Edit Profile</button>
                 </div>
+
             </div>
         </div>
     </div>
+
+
 
     <footer class="bg-light py-3 mt-4">
         <div class="container text-center">

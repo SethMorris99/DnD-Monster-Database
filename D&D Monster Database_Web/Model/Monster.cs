@@ -7,7 +7,7 @@ namespace D_D_Monster_Database_Web.Model
     {
         [Display(Name = "Monster Name")]
 
-        public int MonsterName { get; set; }
+        public string MonsterName { get; set; }
 
         
         [Display(Name = "Source Book Name")]

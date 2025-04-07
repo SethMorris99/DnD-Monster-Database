@@ -30,7 +30,7 @@ namespace D_D_Monster_Database_Web.Pages.Account
                 using (SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
                 {
                     //2. Create a command to insert the data
-                    string cmdText = "INSERT INTO SystemUser (AccountTypeID,UserFirstName,UserLastName,UserDisplayName,UserProfileImage,ProfileImageURL, UserEmail, UserPassword) VALUES (@AccountTypeID, @UserFirstName,@UserLastName,@UserDisplayName,@UserProfileImage,@ProfileImageURL, @UserEmail, @UserPassword)";
+                    string cmdText = "INSERT INTO SystemUser (AccountTypeID,UserFirstName,UserLastName,UserDisplayName,UserProfileImage,ProfileImageURL, UserEmail, UserPassword, LastLoginTime) VALUES (@AccountTypeID, @UserFirstName,@UserLastName,@UserDisplayName,@UserProfileImage,@ProfileImageURL, @UserEmail, @UserPassword, @LastLoginTime)";
                     SqlCommand cmd = new SqlCommand(cmdText, conn);
                     conn.Open();
                     cmd.Parameters.AddWithValue("@AccountTypeID", 1);
@@ -41,6 +41,7 @@ namespace D_D_Monster_Database_Web.Pages.Account
                     cmd.Parameters.AddWithValue("@ProfileImageURL", AppHelper.GetDefaultProfilePicture());
                     cmd.Parameters.AddWithValue("@UserEmail", NewUser.Email);
                     cmd.Parameters.AddWithValue("@UserPassword", AppHelper.GeneratePasswordHash(NewUser.Password));
+                    cmd.Parameters.AddWithValue("@LastLoginTime", DateTime.Now);
                     // check if the password and confirm password match
                     // no need to use hashing or hide that the error was due to password mismatch
                     // since it is registration and not login
