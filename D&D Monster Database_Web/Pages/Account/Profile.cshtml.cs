@@ -29,7 +29,8 @@ namespace D_D_Monster_Database_Web.Pages.Account
                     UserFirstName, 
                     UserLastName,
                     UserDisplayName,
-                    UserEmail, 
+                    UserEmail,
+                    UserPassword,
                     ProfileImageURL, 
                     AccountType.AccountTypeName, 
                     LastLoginTime
@@ -50,9 +51,10 @@ namespace D_D_Monster_Database_Web.Pages.Account
                     UserProfile.LastName = reader.GetString(1);         // UserLastName
                     UserProfile.Username = reader.GetString(2);         // UserDisplayName
                     UserProfile.Email = reader.GetString(3);            // UserEmail
-                    UserProfile.ProfileImageURL = reader.GetString(4);  // ProfileImageURL
-                    UserProfile.AccountType = reader.GetString(5);      // AccountTypeName
-                    UserProfile.LastLoginTime = reader.GetDateTime(6);  // LastLoginTime
+                    UserProfile.Password = reader.GetString(4);         //UserPassword
+                    UserProfile.ProfileImageURL = reader.GetString(5);  // ProfileImageURL
+                    UserProfile.AccountType = reader.GetString(6);      // AccountTypeName
+                    UserProfile.LastLoginTime = reader.GetDateTime(7);  // LastLoginTime
                 }
 
                 reader.Close();
