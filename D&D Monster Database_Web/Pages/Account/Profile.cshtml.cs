@@ -23,10 +23,12 @@ namespace D_D_Monster_Database_Web.Pages.Account
         {
             using (SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
             {
+                // using the @ so that the formatting would be easier to read
                 string cmdText = @"
                     SELECT 
                     UserFirstName, 
-                    UserLastName, 
+                    UserLastName,
+                    UserDisplayName,
                     UserEmail, 
                     ProfileImageURL, 
                     AccountType.AccountTypeName, 
@@ -46,10 +48,11 @@ namespace D_D_Monster_Database_Web.Pages.Account
                 {
                     UserProfile.FirstName = reader.GetString(0);        // UserFirstName
                     UserProfile.LastName = reader.GetString(1);         // UserLastName
-                    UserProfile.Email = reader.GetString(2);            // UserEmail
-                    UserProfile.ProfileImageURL = reader.GetString(3);  // ProfileImageURL
-                    UserProfile.AccountType = reader.GetString(4);      // AccountTypeName
-                    UserProfile.LastLoginTime = reader.GetDateTime(5);  // LastLoginTime
+                    UserProfile.Username = reader.GetString(2);         // UserDisplayName
+                    UserProfile.Email = reader.GetString(3);            // UserEmail
+                    UserProfile.ProfileImageURL = reader.GetString(4);  // ProfileImageURL
+                    UserProfile.AccountType = reader.GetString(5);      // AccountTypeName
+                    UserProfile.LastLoginTime = reader.GetDateTime(6);  // LastLoginTime
                 }
 
                 reader.Close();
