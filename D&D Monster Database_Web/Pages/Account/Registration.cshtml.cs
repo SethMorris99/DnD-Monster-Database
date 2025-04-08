@@ -33,7 +33,7 @@ namespace D_D_Monster_Database_Web.Pages.Account
                     string cmdText = "INSERT INTO SystemUser (AccountTypeID,UserFirstName,UserLastName,UserDisplayName,UserProfileImage,ProfileImageURL, UserEmail, UserPassword, LastLoginTime) VALUES (@AccountTypeID, @UserFirstName,@UserLastName,@UserDisplayName,@UserProfileImage,@ProfileImageURL, @UserEmail, @UserPassword, @LastLoginTime)";
                     SqlCommand cmd = new SqlCommand(cmdText, conn);
                     conn.Open();
-                    cmd.Parameters.AddWithValue("@AccountTypeID", 1);
+                    cmd.Parameters.AddWithValue("@AccountTypeID", 10);
                     cmd.Parameters.AddWithValue("@UserFirstName", NewUser.firstName);
                     cmd.Parameters.AddWithValue("@UserLastName", NewUser.lastName);
                     cmd.Parameters.AddWithValue("@UserDisplayName", NewUser.Username);
