@@ -31,7 +31,7 @@ namespace D_D_Monster_Database_Web.Model
 
         public int XP_Award { get; set; }
 
-        [Display(Name = "Number Appering")]
+        [Display(Name = "Number Appearing")]
 
         public string NumberAppearing { get; set; }
 

@@ -4,9 +4,12 @@ using D_D_Monster_Database_Web.Model;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MonsterDB_Business;
 using Microsoft.Data.SqlClient;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace D_D_Monster_Database_Web.Pages.Monsters
 {
+    [Authorize] // This attribute is used to restrict access to the page to authenticated users
     [BindProperties] // BindProperty attribute is used to bind the property to the form data
     public class AddMonsterModel : PageModel
     {
@@ -46,16 +49,16 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
                                      (SourceBookID,MonsterName,ArmorClass,
                                      HitDice,Attacks,Alignment,
                                      XP_Award, NumberAppearing, TreasureType,
-                                     SpecialAbilities,Description,ImageURL, UserID, Genre)
+                                     SpecialAbilities,Description,ImageURL, UserID)
                                      VALUES 
                                      (@SourceBookID,@MonsterName,@ArmorClass, @HitDice,
                                      @Attacks,@Alignment,@XP_Award,@NumberAppearing,
-                                     @TreasureType, @SpecialAbilities,@Description,@ImageURL, @UserID, @Genre)";
+                                     @TreasureType, @SpecialAbilities,@Description,@ImageURL, @UserID);SELECT SCOPE_IDENTITY();";
                     SqlCommand cmd = new SqlCommand(cmdText, conn);
                     conn.Open();
                     //TODO: make sourcebook id and genre based on selections and userid should be retrieved from user
                     // can add [Authenticate] to the top to make sure we have a cookie and get the ID from that
-                    cmd.Parameters.AddWithValue("@SourceBookID", 1);
+                    cmd.Parameters.AddWithValue("@SourceBookID", NewMonster.SourceBookID);
                     cmd.Parameters.AddWithValue("@MonsterName", NewMonster.MonsterName);
                     cmd.Parameters.AddWithValue("@ArmorClass", NewMonster.ArmorClass);
                     cmd.Parameters.AddWithValue("@HitDice", NewMonster.HitDice);
@@ -67,10 +70,24 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
                     cmd.Parameters.AddWithValue("@SpecialAbilities", NewMonster.SpecialAbilities);
                     cmd.Parameters.AddWithValue("@Description", NewMonster.Description);
                     cmd.Parameters.AddWithValue("@ImageURL", NewMonster.ImageURL);
-                    cmd.Parameters.AddWithValue("@UserID", 1);
-                    cmd.Parameters.AddWithValue("@Genre", 1);
+                    int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+                    cmd.Parameters.AddWithValue("@UserID", userId);
 
-                    //3. Execute the command 
+                    //capture MonsterID
+                    int monsterID = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    foreach (int genreId in SelectedGenreID)
+                    {
+                        string genreCmdText = "INSERT INTO MonsterGenre (MonsterID, GenreID) VALUES (@MonsterID, @GenreID)";
+                        using (SqlCommand genreCmd = new SqlCommand(genreCmdText, conn))
+                        {
+                            genreCmd.Parameters.AddWithValue("@MonsterID", monsterID);
+                            genreCmd.Parameters.AddWithValue("@GenreID", genreId);
+                            genreCmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    //Execute the command 
                     cmd.ExecuteNonQuery();
                 }
                 //Redirect to AddMonster Page
