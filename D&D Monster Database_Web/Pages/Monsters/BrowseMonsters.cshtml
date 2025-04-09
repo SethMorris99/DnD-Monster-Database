@@ -2,3 +2,95 @@
 @model D_D_Monster_Database_Web.Pages.Monsters.BrowseMonstersModel
 @{
 }
+<div class="row text-center">
+    <div class="col-12">
+        <label class="form-label fs-1">Browse Monsters</label>
+    </div>
+</div>
+<div class="row my-2">
+    <div class="col-2">
+        <a asp-page="AddMonster" class="btn btn-primary">Add Monster</a>
+    </div>
+</div>
+<form method="post">
+    @if(Model.Monsters.Count != 0)
+    {
+        @foreach (var monster in Model.Monsters)
+        {
+            <div class="card mb-4">
+                <div class="row g-0">
+                    <div class="col-md-2 p-2">
+                        <img src="@monster.ImageURL" class="img-fluid rounded-start" alt="Monster Image">
+                    </div>
+                    <div class="col-md-10">
+                        <div class="card-body">
+
+                            <div class="mb-3">
+                                <label for="monsterName" class="form-label">Monster Name:</label>
+                                <input type="text" class="form-control" id="monsterName" value="@monster.MonsterName" readonly />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="sourceBook" class="form-label">Source Book:</label>
+                                <input type="text" class="form-control" id="sourceBook" value="@monster.SourceBookID" readonly />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="hitDice" class="form-label">Hit Dice:</label>
+                                <input type="text" class="form-control" id="hitDice" value="@monster.HitDice" readonly />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="attacks" class="form-label">Attacks:</label>
+                                <input type="text" class="form-control" id="attacks" value="@monster.Attacks" readonly />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="alignment" class="form-label">Alignment:</label>
+                                <input type="text" class="form-control" id="alignment" value="@monster.Alignment" readonly />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="armorClass" class="form-label">Armor Class:</label>
+                                <input type="text" class="form-control" id="armorClass" value="@monster.ArmorClass" readonly />
+                            </div>
+                            <div class="mb-3">
+                                <label for="XP_Award" class="form-label">XP Awards:</label>
+                                <input type="text" class="form-control" id="XP_Award" value="@monster.XP_Award" readonly />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="NumberAppearing" class="form-label">Number Appearing:</label>
+                                <input type="text" class="form-control" id="NumberAppearing" value="@monster.NumberAppearing" readonly />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="TreasureType" class="form-label">Treasure Type:</label>
+                                <input type="text" class="form-control" id="TreasureType" value="@monster.TreasureType" readonly />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="SpecialAbilities" class="form-label">Special Abilities:</label>
+                                <input type="text" class="form-control" id="SpecialAbilities" value="@monster.SpecialAbilities" readonly />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="Description" class="form-label">Description:</label>
+                                <textarea class="form-control" id="Description" rows="3" readonly>@monster.Description</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+    else
+    {
+        <div class="row my-2">
+            <div class="col-12">
+                <label class="form-label">No Monsters Found</label>
+            </div>
+        </div>
+    }
+</form>

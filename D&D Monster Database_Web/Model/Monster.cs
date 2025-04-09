@@ -52,7 +52,5 @@ namespace D_D_Monster_Database_Web.Model
         public int UserID { get; set; }
 
         public DateTime DateAdded { get; set; }
-
-
     }
 }
