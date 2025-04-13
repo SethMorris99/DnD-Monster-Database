@@ -1,4 +1,138 @@
 ﻿@page
 @model D_D_Monster_Database_Web.Pages.Monsters.EditMonsterModel
 @{
+    Layout = "_Layout.Authenticated";
 }
+<div class="row text-center">
+    <div class="col-12">
+        <label class="form-label fs-1">Edit  Your Monster</label>
+    </div>
+</div>
+<form method="post">
+    <div class="row my-2">
+        <div class="text-danger" asp-validation-summary="All"></div>
+        <div class="col-4">
+            <label asp-for="CurrentMonster.MonsterName" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="CurrentMonster.MonsterName" type="text" class=" form-control" />
+            <span asp-validation-for="CurrentMonster.MonsterName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="CurrentMonster.ArmorClass" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="CurrentMonster.ArmorClass" type="text" class=" form-control" />
+            <span asp-validation-for="CurrentMonster.ArmorClass" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="CurrentMonster.HitDice" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="CurrentMonster.HitDice" type="text" class=" form-control" />
+            <span asp-validation-for="CurrentMonster.HitDice" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="CurrentMonster.Attacks" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="CurrentMonster.Attacks" type="text" class=" form-control" />
+            <span asp-validation-for="CurrentMonster.Attacks" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="CurrentMonster.Alignment" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="CurrentMonster.Alignment" type="text" class=" form-control" />
+            <span asp-validation-for="CurrentMonster.Alignment" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="CurrentMonster.XP_Award" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="CurrentMonster.XP_Award" type="text" class=" form-control" />
+            <span asp-validation-for="CurrentMonster.XP_Award" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="CurrentMonster.NumberAppearing" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="CurrentMonster.NumberAppearing" type="text" class=" form-control" />
+            <span asp-validation-for="CurrentMonster.NumberAppearing" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="CurrentMonster.TreasureType" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="CurrentMonster.TreasureType" type="text" class="form-control" />
+            <span asp-validation-for="CurrentMonster.TreasureType" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="CurrentMonster.SpecialAbilities" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="CurrentMonster.SpecialAbilities" type="text" class=" form-control" />
+            <span asp-validation-for="CurrentMonster.SpecialAbilities" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="CurrentMonster.Description" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="CurrentMonster.Description" type="text" class=" form-control" />
+            <span asp-validation-for="CurrentMonster.Description" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="CurrentMonster.ImageURL" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="CurrentMonster.ImageURL" type="text" class=" form-control" />
+            <span asp-validation-for="CurrentMonster.ImageURL" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="CurrentMonster.SourceBookID" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <select asp-for="CurrentMonster.SourceBookID" class="form-control" asp-items="Model.SourceBook"></select>
+            <span asp-validation-for="CurrentMonster.SourceBookID" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label class="form-label"></label>
+        </div>
+        <div class="col-12">
+            @foreach (var g in Model.Genres)
+            {
+                <input type="checkbox" value="@g.GenreID" class="form-check-input" name="SelectedGenreID" checked="@g.IsSelected" />
+                <label class="form-label">@g.GenreName</label>
+            }
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-12">
+            <button type="submit" class="form-control btn btn-primary" style="background-color: #6f42c1; border-color: #6f42c1;">Add Monster</button>
+        </div>
+    </div>
+</form>

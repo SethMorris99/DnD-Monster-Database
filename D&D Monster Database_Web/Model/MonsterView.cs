@@ -5,11 +5,9 @@ using System.ComponentModel.DataAnnotations;
 
 public class MonsterView
 {
-
     [Display(Name = "Monster Name")]
 
     public string MonsterName { get; set; }
-
 
     [Display(Name = "Source Book Name")]
 
@@ -47,6 +45,12 @@ public class MonsterView
 
     [Display(Name = "Image URL")]
      public string ImageURL { get; set; }
-     public int UserID { get; set; }
-     public DateTime DateAdded { get; set; }
+
+    [Display(Name = "User ID")]
+    public int UserID { get; set; }
+
+    public List<string> GenreNames { get; set; } = new List<string>();
+
+
+    public DateTime DateAdded { get; set; }
 }
