@@ -7,6 +7,7 @@ using MonsterDB_Business;
 
 namespace D_D_Monster_Database_Web.Pages.Monsters
 {
+    [Authorize]
     public class BrowseMonstersModel : PageModel
     {
         public List<MonsterView> Monsters { get; set; } = new List<MonsterView>();

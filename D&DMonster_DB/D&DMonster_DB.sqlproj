@@ -62,21 +62,21 @@
     <Folder Include="dbo\Tables\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\MonsterAbility.sql" />
+    <PostDeploy Include="Data-Import.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="D&amp;DMonster_DB.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\Monster.sql" />
     <Build Include="dbo\Tables\SystemUser.sql" />
+    <Build Include="dbo\Tables\MonsterAbility.sql" />
     <Build Include="dbo\Tables\SourceBook.sql" />
     <Build Include="dbo\Tables\SavingThrow.sql" />
     <Build Include="dbo\Tables\MonsterSavingThrow.sql" />
     <Build Include="dbo\Tables\Encounter.sql" />
     <Build Include="dbo\Tables\AccountType.sql" />
-    <Build Include="dbo\Tables\Monster.sql" />
-    <Build Include="dbo\Tables\Genre.sql" />
     <Build Include="dbo\Tables\MonsterGenre.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <PostDeploy Include="Data-Import.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <RefactorLog Include="D&amp;DMonster_DB.refactorlog" />
+    <Build Include="dbo\Tables\Genre.sql" />
   </ItemGroup>
 </Project>
