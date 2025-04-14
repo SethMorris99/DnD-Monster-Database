@@ -34,9 +34,10 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
             PopulateSourceBookList();
             // This method is commented out for now since we are considering adding a table for treasure types
             //PopulateTreasureTypeList();
-            PopulateGenresList();
             // Populate the selected genres based on the monster ID
             SelectedGenreID = PopulateSelectedGenreIDS(id);
+            PopulateGenresList();
+            
         }
         
         // This method is called when the form is submitted
@@ -69,7 +70,7 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
             using (SqlConnection connection = new SqlConnection(AppHelper.GetDBConnectionString()))
             {
                 // This is the SQL query to get the monster details for a specific monster ID
-                string query = "select MonsterID, SourceBookID, MonsterName, ArmorClass, HitDice, Attacks, Aligment, XP_Award, NumberAppearing, TreasureType, SpecialAbilites, Description, ImageURL, UserID From Monster WHERE MonsterID = @MonsterID";
+                string query = "select MonsterID, SourceBookID, MonsterName, ArmorClass, HitDice, Attacks, Alignment, XP_Award, NumberAppearing, TreasureType, SpecialAbilities, Description, ImageURL, UserID From Monster WHERE MonsterID = @MonsterID";
                 SqlCommand cmd = new SqlCommand(query, connection);
                 cmd.Parameters.AddWithValue("@MonsterID", id);
                 connection.Open();
@@ -82,19 +83,18 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
                         // Populate the CurrentMonster object with the data from the database
                         CurrentMonster = new Monster
                         {
-                            MonsterName = reader.GetString(0),
-                            SourceBookID = reader.GetInt32(1),
-                            ArmorClass = reader.GetInt32(2),
-                            HitDice = reader.GetInt32(3),
-                            Attacks = reader.GetString(4),
-                            Alignment = reader.GetInt32(5),
-                            XP_Award = reader.GetInt32(6),
-                            NumberAppearing = reader.GetString(7),
-                            TreasureType = reader.GetChar(8),
-                            SpecialAbilities = reader.GetString(9),
-                            Description = reader.GetString(10),
-                            ImageURL = reader.GetString(11),
-                            UserID = reader.GetInt32(12),
+                            MonsterName = reader["MonsterName"].ToString(),
+                            SourceBookID = Convert.ToInt32(reader["SourceBookID"]),
+                            ArmorClass = Convert.ToInt32(reader["ArmorClass"]),
+                            HitDice = reader["HitDice"].ToString(),
+                            Attacks = reader["Attacks"].ToString(),
+                            Alignment = reader["Alignment"].ToString(),
+                            XP_Award = Convert.ToInt32(reader["XP_Award"]),
+                            NumberAppearing = reader["NumberAppearing"].ToString(),
+                            TreasureType = Convert.ToChar(reader["TreasureType"]),
+                            SpecialAbilities = reader["SpecialAbilities"].ToString(),
+                            Description = reader["Description"].ToString(),
+                            ImageURL = reader["ImageURL"].ToString(),
 
                         };
                     }
@@ -105,45 +105,23 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
         // This method is called when the form is submitted
         private void PopulateGenresList()
         {
-            // This method populates the genres list with data from the database
             using (SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
             {
-                // This is the SQL query to get the genre ID and name from the Genre table
                 string query = "SELECT GenreID, GenreName FROM Genre";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
-                // Execute the command and read the results
                 if (reader.HasRows)
                 {
-                    // The first while loop reads the genre data from the database
                     while (reader.Read())
                     {
                         var genre = new GenreInfo();
                         genre.GenreID = int.Parse(reader["GenreID"].ToString());
                         genre.GenreName = reader["GenreName"].ToString();
-                        // Set the IsSelected property to false by default
-                        if (reader.HasRows)
-                        {
-                            // The second while loop reads the genre data from the database
-                            while (reader.Read())
-                            {
-                                var monsterGenre = new GenreInfo();
-                                monsterGenre.GenreID = int.Parse(reader["GenreID"].ToString());
-                                monsterGenre.GenreName = reader["GenreName"].ToString();
-                                Genres.Add(genre);
-                                if (SelectedGenreID.Contains(monsterGenre.GenreID))
-                                {
-                                    monsterGenre.IsSelected = true;
-                                }
-                                else
-                                {
-                                    monsterGenre.IsSelected = false;
-                                }
-                            }
-                        }
-
+                        genre.IsSelected = false;
+                        Genres.Add(genre);
                     }
+
                 }
             }
         }

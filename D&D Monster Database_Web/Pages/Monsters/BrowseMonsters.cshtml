@@ -1,104 +1,104 @@
 ﻿@page
 @model D_D_Monster_Database_Web.Pages.Monsters.BrowseMonstersModel
 @{
+    Layout = "_Layout.Authenticated";
 }
-<div class="row text-center">
+<div class="row text-center mb-4">
     <div class="col-12">
-        <label class="form-label fs-1">Browse Monsters</label>
+        <h1 class="display-4 text-primary fw-bold">🧙 Browse Monsters</h1>
     </div>
 </div>
-<!--Add Button to look like a button -->
-<div class="row my-2">
-    <div class="col-2">
-        <a asp-page="AddMonster" class="btn btn-primary">Add Monster</a>
+
+<div class="row mb-4">
+    <div class="col-12 text-end">
+        <a asp-page="AddMonster" class="btn btn-success btn-lg shadow-sm">+ Add Monster</a>
     </div>
 </div>
-<!--Creates a form-->
+
 <form method="post">
-    <!--Checks if Monster is available-->
-    @if(Model.Monsters.Count != 0)
+    @if (Model.Monsters.Count != 0)
     {
         @foreach (var monster in Model.Monsters)
         {
-            <div class="card mb-4">
-                <div class="row g-0">
-                    <div class="col-md-2 p-2"> <!--Build left column-->
-                        <img src="@monster.ImageURL" class="img-fluid rounded-start" alt="Monster Image">
+            <div class="card mb-5 shadow-lg border-0">
+                <!-- Top image -->
+                <img src="@monster.ImageURL"
+                     class="card-img-top"
+                     alt="@monster.MonsterName"
+                     style="width: 100%; height: 300px; object-fit: contain; background-color: #111;" />
+
+                <!-- Card body -->
+                <div class="card-body p-4">
+                    <h3 class="card-title text-danger">@monster.MonsterName</h3>
+                    <hr />
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <strong>Source Book:</strong>
+                            <div class="form-control-plaintext">@monster.SourceBookID</div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <strong>Hit Dice:</strong>
+                            <div class="form-control-plaintext">@monster.HitDice</div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <strong>Attacks:</strong>
+                            <div class="form-control-plaintext">@monster.Attacks</div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <strong>Alignment:</strong>
+                            <div class="form-control-plaintext">@monster.Alignment</div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <strong>Armor Class:</strong>
+                            <div class="form-control-plaintext">@monster.ArmorClass</div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <strong>XP Award:</strong>
+                            <div class="form-control-plaintext">@monster.XP_Award</div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <strong>Number Appearing:</strong>
+                            <div class="form-control-plaintext">@monster.NumberAppearing</div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <strong>Treasure Type:</strong>
+                            <div class="form-control-plaintext">@monster.TreasureType</div>
+                        </div>
+
+                        <div class="col-12 mb-3">
+                            <strong>Special Abilities:</strong>
+                            <div class="form-control-plaintext">@monster.SpecialAbilities</div>
+                        </div>
+
+                        <div class="col-12 mb-3">
+                            <strong>Description:</strong>
+                            <div class="form-control bg-light p-3 rounded" style="min-height: 80px;">
+                                @monster.Description
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-10"> <!--Right column-->
-                        <div class="card-body">
-                            <div class="mb-3">
-                                <label for="monsterName" class="form-label">Monster Name:</label>
-                                <input type="text" class="form-control" id="monsterName" value="@monster.MonsterName" readonly />
-                            </div>
 
-                            <div class="mb-3">
-                                <label for="sourceBook" class="form-label">Source Book:</label>
-                                <input type="text" class="form-control" id="sourceBook" value="@monster.SourceBookID" readonly />
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="hitDice" class="form-label">Hit Dice:</label>
-                                <input type="text" class="form-control" id="hitDice" value="@monster.HitDice" readonly />
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="attacks" class="form-label">Attacks:</label>
-                                <input type="text" class="form-control" id="attacks" value="@monster.Attacks" readonly />
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="alignment" class="form-label">Alignment:</label>
-                                <input type="text" class="form-control" id="alignment" value="@monster.Alignment" readonly />
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="armorClass" class="form-label">Armor Class:</label>
-                                <input type="text" class="form-control" id="armorClass" value="@monster.ArmorClass" readonly />
-                            </div>
-                            <div class="mb-3">
-                                <label for="XP_Award" class="form-label">XP Awards:</label>
-                                <input type="text" class="form-control" id="XP_Award" value="@monster.XP_Award" readonly />
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="NumberAppearing" class="form-label">Number Appearing:</label>
-                                <input type="text" class="form-control" id="NumberAppearing" value="@monster.NumberAppearing" readonly />
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="TreasureType" class="form-label">Treasure Type:</label>
-                                <input type="text" class="form-control" id="TreasureType" value="@monster.TreasureType" readonly />
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="SpecialAbilities" class="form-label">Special Abilities:</label>
-                                <input type="text" class="form-control" id="SpecialAbilities" value="@monster.SpecialAbilities" readonly />
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="Description" class="form-label">Description:</label>
-                                <textarea class="form-control" id="Description" rows="3" readonly>@monster.Description</textarea>
-                            </div>
-                        </div>
-                        <div class=" row my-2">
-                            <div class="col-12">
-                                <a asp-page=" Edit Monster" asp-route-id="@monster.MonsterName" class="btn btn-primary">Edit Monster</a>
-                                <button onclick="return confirm('Are you sure?')" class="btn btn-danger" asp-route-id="@monster.MonsterName" asp-page-handler="Delete">Delete Monster</button>
-                            </div>
-                        </div>
+                    <!-- Action buttons -->
+                    <div class="text-end mt-4">
+                        <a asp-page="EditMonster" asp-route-id="@monster.MonsterID" class="btn btn-outline-primary me-2">Edit</a>
+                        <button type="submit" asp-page-handler="Delete" asp-route-id="@monster.MonsterID" class="btn btn-outline-danger" onclick="return confirm('Are you sure?')">Delete</button>
                     </div>
                 </div>
             </div>
         }
-
     }
     else
     {
-        <div class="row my-2">
-            <div class="col-12">
-                <label class="form-label">No Monsters Found. Click Add Monster to add a new Monster</label>
-            </div>
+        <div class="alert alert-warning text-center">
+            <strong>No Monsters Found.</strong> Click <em>Add Monster</em> to add a new one!
         </div>
     }
 </form>

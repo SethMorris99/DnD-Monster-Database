@@ -56,8 +56,6 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
                                      @TreasureType, @SpecialAbilities,@Description,@ImageURL, @UserID);SELECT SCOPE_IDENTITY();";
                     SqlCommand cmd = new SqlCommand(cmdText, conn);
                     conn.Open();
-                    //TODO: make sourcebook id and genre based on selections and userid should be retrieved from user
-                    // can add [Authenticate] to the top to make sure we have a cookie and get the ID from that
                     cmd.Parameters.AddWithValue("@SourceBookID", NewMonster.SourceBookID);
                     cmd.Parameters.AddWithValue("@MonsterName", NewMonster.MonsterName);
                     cmd.Parameters.AddWithValue("@ArmorClass", NewMonster.ArmorClass);

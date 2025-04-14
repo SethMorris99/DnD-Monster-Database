@@ -5,6 +5,9 @@ using System.ComponentModel.DataAnnotations;
 
 public class MonsterView
 {
+
+    public int MonsterID { get; set; }
+
     [Display(Name = "Monster Name")]
 
     public string MonsterName { get; set; }
@@ -19,11 +22,11 @@ public class MonsterView
 
     [Display(Name = "Hit Dice")]
 
-    public int HitDice { get; set; }
+    public string HitDice { get; set; }
 
     public string Attacks { get; set; }
 
-    public int Alignment { get; set; }
+    public string Alignment { get; set; }
 
     [Display(Name = "XP Awards")]
 

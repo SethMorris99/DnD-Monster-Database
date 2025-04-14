@@ -1,4 +1,5 @@
 using D_D_Monster_Database_Web.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
@@ -6,9 +7,9 @@ using MonsterDB_Business;
 
 namespace D_D_Monster_Database_Web.Pages.Monsters
 {
+    [Authorize]
     public class BrowseMonstersModel : PageModel
     {
-
         public List<MonsterView> Monsters { get; set; } = new List<MonsterView>();
         public void OnGet()
         {
@@ -30,12 +31,13 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
                     {
                         MonsterView monster = new MonsterView
                         {
+                            MonsterID = Convert.ToInt32(reader["MonsterID"]),
                             MonsterName = reader["MonsterName"].ToString(),
                             SourceBookID = Convert.ToInt32(reader["SourceBookID"]),
                             ArmorClass = Convert.ToInt32(reader["ArmorClass"]),
-                            HitDice = Convert.ToInt32(reader["HitDice"]),
+                            HitDice = reader["HitDice"].ToString(),
                             Attacks = reader["Attacks"].ToString(),
-                            Alignment = Convert.ToInt32(reader["Alignment"]),
+                            Alignment = reader["Alignment"].ToString(),
                             XP_Award = Convert.ToInt32(reader["XP_Award"]),
                             NumberAppearing = reader["NumberAppearing"].ToString(),
                             TreasureType = Convert.ToChar(reader["TreasureType"]),
@@ -87,7 +89,7 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
             //Delete the monster form the database 
             using (SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
             {
-                string cmdText = "Delete From Monster where MonsterID = @MonsterID";
+                string cmdText = "Delete From MonsterGenre where MonsterID = @MonsterID; Delete from Monster where MonsterID = @MonsterID" ;
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@MonsterID", id);
                 conn.Open();
