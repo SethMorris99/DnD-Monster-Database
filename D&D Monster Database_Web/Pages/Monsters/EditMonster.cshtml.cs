@@ -6,6 +6,7 @@ using MonsterDB_Business;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Data.SqlClient;
 using static D_D_Monster_Database_Web.Pages.Monsters.AddMonsterModel;
+using System.Security.Claims;
 
 namespace D_D_Monster_Database_Web.Pages.Monsters
 {
@@ -39,7 +40,80 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
             PopulateGenresList();
             
         }
-        
+        public IActionResult OnPost()
+        {
+            // force genres to be selected
+            if (SelectedGenreID == null || !SelectedGenreID.Any())
+            {
+                ModelState.AddModelError("GenreError", "Please select at least one genre.");
+                PopulateSourceBookList();
+                PopulateGenresList();
+                return Page();
+            }
+            if (ModelState.IsValid)
+            {
+                using (SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
+                {
+                    conn.Open();
+
+                    //Update Monster data
+                    string cmdText = @"UPDATE Monster SET
+                                 SourceBookID = @SourceBookID,
+                                 MonsterName = @MonsterName,
+                                 ArmorClass = @ArmorClass,
+                                 HitDice = @HitDice,
+                                 Attacks = @Attacks,
+                                 Alignment = @Alignment,
+                                 XP_Award = @XP_Award,
+                                 NumberAppearing = @NumberAppearing,
+                                 TreasureType = @TreasureType,
+                                 SpecialAbilities = @SpecialAbilities,
+                                 Description = @Description,
+                                 ImageURL = @ImageURL
+                                 WHERE MonsterID = @MonsterID";
+
+                    SqlCommand cmd = new SqlCommand(cmdText, conn);
+                    cmd.Parameters.AddWithValue("@MonsterID", CurrentMonster.MonsterID);
+                    cmd.Parameters.AddWithValue("@SourceBookID", CurrentMonster.SourceBookID);
+                    cmd.Parameters.AddWithValue("@MonsterName", CurrentMonster.MonsterName);
+                    cmd.Parameters.AddWithValue("@ArmorClass", CurrentMonster.ArmorClass);
+                    cmd.Parameters.AddWithValue("@HitDice", CurrentMonster.HitDice);
+                    cmd.Parameters.AddWithValue("@Attacks", CurrentMonster.Attacks);
+                    cmd.Parameters.AddWithValue("@Alignment", CurrentMonster.Alignment);
+                    cmd.Parameters.AddWithValue("@XP_Award", CurrentMonster.XP_Award);
+                    cmd.Parameters.AddWithValue("@NumberAppearing", CurrentMonster.NumberAppearing);
+                    cmd.Parameters.AddWithValue("@TreasureType", CurrentMonster.TreasureType);
+                    cmd.Parameters.AddWithValue("@SpecialAbilities", CurrentMonster.SpecialAbilities);
+                    cmd.Parameters.AddWithValue("@Description", CurrentMonster.Description);
+                    cmd.Parameters.AddWithValue("@ImageURL", CurrentMonster.ImageURL);
+                    cmd.ExecuteNonQuery();
+
+
+                    //Update Genres: remove old and insert new
+                    SqlCommand deleteCmd = new SqlCommand("DELETE FROM MonsterGenre WHERE MonsterID = @MonsterID", conn);
+                    deleteCmd.Parameters.AddWithValue("@MonsterID", CurrentMonster.MonsterID);
+                    deleteCmd.ExecuteNonQuery();
+                    foreach (int genreId in SelectedGenreID)
+                    {
+                        SqlCommand genreCmd = new SqlCommand("INSERT INTO MonsterGenre (MonsterID, GenreID) VALUES (@MonsterID, @GenreID)", conn);
+                        genreCmd.Parameters.AddWithValue("@MonsterID", CurrentMonster.MonsterID);
+                        genreCmd.Parameters.AddWithValue("@GenreID", genreId);
+                        genreCmd.ExecuteNonQuery();
+                    }
+
+                }
+
+                return RedirectToPage("/Monsters/BrowseMonsters");
+            }
+            else
+            {
+                // repopulate and refresh
+                PopulateSourceBookList();
+                PopulateGenresList();
+                return Page();
+            }
+        }
+
         // This method is called when the form is submitted
         private static List<int> PopulateSelectedGenreIDS(int id)
         {
@@ -83,6 +157,7 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
                         // Populate the CurrentMonster object with the data from the database
                         CurrentMonster = new Monster
                         {
+                            MonsterID = Convert.ToInt32(reader["MonsterID"]),
                             MonsterName = reader["MonsterName"].ToString(),
                             SourceBookID = Convert.ToInt32(reader["SourceBookID"]),
                             ArmorClass = Convert.ToInt32(reader["ArmorClass"]),

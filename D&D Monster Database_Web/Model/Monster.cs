@@ -5,6 +5,7 @@ namespace D_D_Monster_Database_Web.Model
 {
     public class Monster
     {
+        public int MonsterID { get; set; }
         [Display(Name = "Monster Name")]
 
         public string MonsterName { get; set; }

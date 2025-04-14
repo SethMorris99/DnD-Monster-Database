@@ -7,7 +7,6 @@ using MonsterDB_Business;
 
 namespace D_D_Monster_Database_Web.Pages.Monsters
 {
-    [Authorize]
     public class BrowseMonstersModel : PageModel
     {
         public List<MonsterView> Monsters { get; set; } = new List<MonsterView>();
@@ -20,8 +19,8 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
         {
             using (SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
             {
-                string cmdText = "SELECT m.MonsterID, m.SourceBookID, m.MonsterName, m.ArmorClass, m.HitDice, m.Attacks, m.Alignment, m.Xp_Award, m.NumberAppearing, m.TreasureType, m.SpecialAbilities, m.Description, m.ImageURL " +
-                                 "FROM Monster m JOIN MonsterGenre g ON m.MonsterID = g.MonsterID";
+                string cmdText = "SELECT DISTINCT m.MonsterID, m.MonsterName, m.ArmorClass, m.HitDice, m.Attacks, m.Alignment, m.Xp_Award, m.NumberAppearing, m.TreasureType, m.SpecialAbilities, m.Description, m.ImageURL, sb.Title as Title " +
+                                 "FROM Monster m JOIN MonsterGenre g ON m.MonsterID = g.MonsterID JOIN SourceBook sb ON m.SourceBookID = sb.SourceBookID";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -33,7 +32,7 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
                         {
                             MonsterID = Convert.ToInt32(reader["MonsterID"]),
                             MonsterName = reader["MonsterName"].ToString(),
-                            SourceBookID = Convert.ToInt32(reader["SourceBookID"]),
+                            SourceBookTitle = reader["Title"].ToString(),
                             ArmorClass = Convert.ToInt32(reader["ArmorClass"]),
                             HitDice = reader["HitDice"].ToString(),
                             Attacks = reader["Attacks"].ToString(),

@@ -35,7 +35,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <strong>Source Book:</strong>
-                            <div class="form-control-plaintext">@monster.SourceBookID</div>
+                            <div class="form-control-plaintext">@monster.SourceBookTitle</div>
                         </div>
 
                         <div class="col-md-6 mb-3">
@@ -73,10 +73,20 @@
                             <div class="form-control-plaintext">@monster.TreasureType</div>
                         </div>
 
-                        <div class="col-12 mb-3">
+                        <div class="col-md-6 mb-3">
                             <strong>Special Abilities:</strong>
                             <div class="form-control-plaintext">@monster.SpecialAbilities</div>
                         </div>
+
+                        @if (monster.GenreNames != null && monster.GenreNames.Count > 0)
+                        {
+                            <div class="col-md-6 mb-3">
+                                <strong>Genres:</strong>
+                                <div class="form-control-plaintext">
+                                    @string.Join(", ", monster.GenreNames)
+                                </div>
+                            </div>
+                        }
 
                         <div class="col-12 mb-3">
                             <strong>Description:</strong>
@@ -85,6 +95,8 @@
                             </div>
                         </div>
                     </div>
+
+
 
                     <!-- Action buttons -->
                     <div class="text-end mt-4">

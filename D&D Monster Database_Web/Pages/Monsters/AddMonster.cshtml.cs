@@ -34,6 +34,14 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
         }
         public IActionResult OnPost()
         {
+            // force genres to be selected
+            if (SelectedGenreID == null || !SelectedGenreID.Any())
+            {
+                ModelState.AddModelError("GenreError", "Please select at least one genre.");
+                PopulateSourceBookList();
+                PopulateGenresList();
+                return Page();
+            }
             //Validate User Input
             if (ModelState.IsValid)
             {
@@ -94,6 +102,8 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
             else
             {
                 //Redirect the user 
+                PopulateSourceBookList();
+                PopulateGenresList();
                 return Page();
             }
         }

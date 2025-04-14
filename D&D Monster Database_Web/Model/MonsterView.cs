@@ -16,6 +16,8 @@ public class MonsterView
 
     public int SourceBookID { get; set; }
 
+    public string SourceBookTitle { get; set; }
+
     [Display(Name = "Armor Class")]
 
     public int ArmorClass { get; set; }
