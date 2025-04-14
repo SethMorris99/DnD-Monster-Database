@@ -1,16 +1,19 @@
 ﻿@page
 @model IndexModel
 @{
+    Layout = Model.Layout;
     ViewData["Title"] = "Home page";
+
 }
 
 <div class="header text-center py-4 bg-dark text-white">
     <h1 class="display-4">D&D Monster Database</h1>
 </div>
 
+
 <div class="container text-center my-4">
     <h2 class="mt-4 text-primary">Welcome to the Monster Database</h2>
-    <p class="lead text-secondary">Explore a vast collection of legendary creatures from the D&D universe. Whether you're a Dungeon Master or a player, this is your ultimate resource.</p>
+    <p class="lead text-secondary">Explore a vast collection of monsters and enemies for your Dungeons and Dragons game.</p>
 
     <div class="d-flex justify-content-center">
         <form class="row g-2 justify-content-center p-4 bg-light shadow rounded w-100 mx-auto">
@@ -29,13 +32,23 @@
         </form>
     </div>
 
+    <div class="row">
+        <div class="col-sm-4">
+            <h3 class="mt-5 text-success">Register Account</h3>
+            <p>Sign up to start contributing to the database!</p>
+            <a href="/Account/Registration" class="btn btn-primary mt-3">Register</a>
+        </div>
+        <div class="col-sm-4">
+            <h3 class="mt-5 text-success">Sign In</h3>
+            <p>Returning user? Log in here.</p>
+            <a href="/Account/Sign_In" class="btn btn-success mt-3">Sign In</a>
+        </div>
+        <div class="col-sm-4">
+            <h3 class="mt-5 text-success">Browse Monsters</h3>
+            <p>Start exploring the database!</p>
+            <a href="/Monsters/BrowseMonsters" class="btn btn-warning mt-3">Browse</a>
+        </div>
+    </div>
 
-    <h3 class="mt-5 text-success">Discover Featured Monsters</h3>
-    <ul class="list-unstyled text-dark">
-        <li><strong class="text-danger">Ancient Dragon</strong> - Fearsome and wise, ruling the skies.</li>
-        <li><strong class="text-warning">Mind Flayer</strong> - Masters of psionics and nightmares.</li>
-        <li><strong class="text-info">Lich</strong> - An undead sorcerer wielding forbidden magic.</li>
-    </ul>
-
-    <a href="/Account/Registration" class="btn btn-success mt-3">Explore Now</a>
 </div>
+
