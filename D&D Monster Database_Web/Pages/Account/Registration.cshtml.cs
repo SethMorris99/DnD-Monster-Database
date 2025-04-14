@@ -50,6 +50,11 @@ namespace D_D_Monster_Database_Web.Pages.Account
                         ModelState.AddModelError("PasswordError", "Passwords do not match.");
                         return Page();
                     }
+                    if(NewUser.Password.Length < 10)
+                    {
+                        ModelState.AddModelError("PasswordError", "Password must be at least 10 characters long.");
+                        return Page();
+                    }
 
                     //3. Execute the command 
                     cmd.ExecuteNonQuery();
