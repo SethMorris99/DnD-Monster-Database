@@ -1,0 +1,31 @@
+﻿@page
+@model D_D_Monster_Database_Web.Pages.Monsters.AddMonsterModel
+@{
+    Layout = "_Layout.Authenticated";
+}
+
+<div class="row text-center">
+    <div class="col-12">
+        <label class="form-label fs-1">Add Your Monster</label>
+    </div>
+</div>
+<form method="post">
+    <div class="row my-2">
+        <div class="col-4">
+            <label class="form-label"></label>
+        </div>
+        <div class="col-12"> 
+            @foreach (var g in Model.Genres)
+            {
+                <input type="checkbox" value="@g.GenreID" class="form-check-input" name="SelectedGenreID" checked="@g.IsSelected"/>
+                <label class="form-label">@g.GenreName</label>
+            }
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-12">
+            <button type="submit" class="form-control btn btn-primary" style="background-color: #6f42c1; border-color: #6f42c1;">Add Monster</button>
+        </div>
+    </div>
+    </form>
+
