@@ -11,20 +11,6 @@ namespace D_D_Monster_Database_Web.Pages.Genre
         {
         }
 
-        public IActionResult OnPost()
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    using(SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
-                }
-                catch
-                {
-                    throw;
-                }
-                return RedirectToPage("/Index");
-            }
-            return RedirectToPage("/Index");
-        }
+    }
 }
+

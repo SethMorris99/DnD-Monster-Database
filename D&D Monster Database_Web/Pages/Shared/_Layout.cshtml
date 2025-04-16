@@ -10,19 +10,19 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/D_D_Monster_Database_Web.styles.css" asp-append-version="true" />
     <style>
-    .navbar {
-    background-color: #161A30;
-    }
+        .navbar {
+        background-color: #161A30;
+        }
 
-    .navbar a,
-    .navbar .nav-link,
-    .navbar-brand {
-    color: #ffffff;
-    }
+        .navbar a,
+        .navbar .nav-link,
+        .navbar-brand {
+        color: #ffffff;
+        }
 
-    .navbar .nav-link:hover {
-    color: #00bcd4;
-    }
+        .navbar .nav-link:hover {
+        color: #00bcd4;
+        }
     </style>
 </head>
 
@@ -32,7 +32,7 @@
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">D&D Monster Database</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
@@ -43,12 +43,21 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-page="/Account/Registration">Register</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Account/Sign_In">Sign In</a>
-                        </li>                        
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Monsters/BrowseMonsters">Browse Monsters</a>
-                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Account/Sign_Out">Sign Out</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Monsters/BrowseMonsters">Browse Monsters</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-page="/Account/Sign_In">Sign In</a>
+                            </li>
+                        }                     
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-page="/Account/About">About</a>
                         </li>
