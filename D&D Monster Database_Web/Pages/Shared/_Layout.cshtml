@@ -40,6 +40,7 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-page="/Index">Home</a>
                         </li>
+                        <!--checks to see if user is logged in and displays appropriate options in header-->
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
