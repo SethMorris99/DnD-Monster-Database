@@ -15,7 +15,7 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
         {
             PopulateMonsterList();
         }
-        //
+        
         private void PopulateMonsterList()
         {
             using (SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
