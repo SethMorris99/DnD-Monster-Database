@@ -1,0 +1,54 @@
+﻿@page
+@model D_D_Monster_Database_Web.Pages.SourceBooks.AddSourceBookModel
+@{
+}
+
+<div class="row text-center">
+    <div class="col-12">
+        <label class="form-label fs-1">Add A Source Book</label>
+    </div>
+</div>
+<form method="post">
+    <div class="row my-2">
+        <div class="text-danger" asp-validation-summary="All"></div>
+        <div class="col-4">
+            <label asp-for="NewSourceBook.Title" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="NewSourceBook.Title" type="text" class=" form-control" />
+            <span asp-validation-for="NewSourceBook.Title" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="NewSourceBook.Edition" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="NewSourceBook.Edition" type="text" class=" form-control" />
+            <span asp-validation-for="NewSourceBook.Edition" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="NewSourceBook.YearPublished" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="NewSourceBook.YearPublished" type="text" class=" form-control" />
+            <span asp-validation-for="NewSourceBook.YearPublished" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="NewSourceBook.PageNumber" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="NewSourceBook.PageNumber" type="text" class=" form-control" />
+            <span asp-validation-for="NewSourceBook.PageNumber" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-12">
+            <button type="submit" class="form-control btn btn-primary" style="background-color: #6f42c1; border-color: #6f42c1;">Add Source Book</button>
+        </div>
+    </div>
+</form>
