@@ -9,7 +9,7 @@ using System.Security.Claims;
 
 namespace D_D_Monster_Database_Web.Pages.SourceBooks
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public class SourceBookListModel : PageModel
     {
         public List<SourceBook> SourceBookList { get; set; } = new List<SourceBook>();
@@ -58,6 +58,11 @@ namespace D_D_Monster_Database_Web.Pages.SourceBooks
         {
             try
             {
+                if (User.IsInRole("Admin") == false)
+                {
+                    return RedirectToPage("/Account/AccessDenied");
+                }
+
                 using (SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
                 {
                     conn.Open();

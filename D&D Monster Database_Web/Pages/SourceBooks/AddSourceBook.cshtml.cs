@@ -7,7 +7,7 @@ using MonsterDB_Business;
 
 namespace D_D_Monster_Database_Web.Pages.SourceBooks
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [BindProperties]
     public class AddSourceBookModel : PageModel
     {
