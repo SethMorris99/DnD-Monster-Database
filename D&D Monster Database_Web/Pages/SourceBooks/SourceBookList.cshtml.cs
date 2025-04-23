@@ -52,5 +52,31 @@ namespace D_D_Monster_Database_Web.Pages.SourceBooks
                 throw;
             }
         }
+
+        public IActionResult OnPostDelete(int id)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
+                {
+                    conn.Open();
+                    string sql = "DELETE FROM SourceBook WHERE SourceBookID = @SourceBookID";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@SourceBookID", id);
+                        cmd.ExecuteNonQuery();
+
+                    }
+                }
+                return RedirectToPage("SourceBookList");
+            }
+            catch 
+            {
+                throw;
+            }
+
+            // If we reach here, something went wrong
+            return Page();
+        }
     }
 }
