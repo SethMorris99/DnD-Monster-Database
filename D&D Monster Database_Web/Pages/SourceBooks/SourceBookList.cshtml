@@ -1,0 +1,28 @@
+﻿@page
+@model D_D_Monster_Database_Web.Pages.SourceBooks.SourceBookListModel
+@{
+}
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Edition</th>
+			<th>Year Published</th>
+			<th>Page Number</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var sourceBook in Model.SourceBookList)
+		{
+			<tr>
+				<td>@sourceBook.Title</td>
+				<td>@sourceBook.Edition</td>
+				<td>@sourceBook.YearPublished</td>
+				<td>@sourceBook.PageNumber</td>
+				<td><a asp-page="./EditSourceBook" asp-route-id="@sourceBook.SourceBookID" class="btn btn-primary">Edit</a></td>
+				<td><a asp-page="./DeleteSourceBook" asp-route-id="@sourceBook.SourceBookID" class="btn btn-danger">Edit</a></td>
+			</tr>
+		}
+	</tbody>
+</table>
