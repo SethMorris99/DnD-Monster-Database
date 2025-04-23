@@ -29,6 +29,8 @@ h3.card-title {
 
 /* Footer Styling */
 .footer {
+    position: fixed;
+    bottom: 0;
     background-color: #161A30; /* Dark background */
     color: #ffffff; /* White text */
     padding: 20px 0; /* Padding for spacing */
