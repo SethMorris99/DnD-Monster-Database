@@ -12,9 +12,9 @@ namespace D_D_Monster_Database_Web.Model
         [Required]
         public string Edition { get; set; }
         [Required]
-        [Range(1970,2025, ErrorMessage = "Enter a valid year between 1970 and the current year")]
-        public int YearPublished { get; set; }
-        public int PageNumber { get; set; }
+        [Range(1970, 2025, ErrorMessage = "Enter a valid year between 1970 and the current year")]
+        public int YearPublished { get; set; } = 1970;
+        public int PageNumber { get; set; } = 100;
 
     }
 }
