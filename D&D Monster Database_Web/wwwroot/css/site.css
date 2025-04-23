@@ -3,17 +3,17 @@
     background-color: #161A30;
 }
 
-    .navbar a,
-    .navbar .nav-link,
-    .navbar-brand {
-        color: #ffffff;
-        transition: color 0.3s ease-in-out;
-    }
+.navbar a,
+.navbar .nav-link,
+.navbar-brand {
+    color: #ffffff;
+    transition: color 0.3s ease-in-out;
+}
 
-        .navbar .nav-link:hover,
-        .navbar-brand:hover {
-            color: #00bcd4;
-        }
+.navbar .nav-link:hover,
+.navbar-brand:hover {
+    color: #00bcd4;
+}
 
 /* Card Styling */
 .card {
@@ -29,25 +29,39 @@ h3.card-title {
 
 /* Footer Styling */
 .footer {
-    position: fixed;
-    bottom: 0;
+    position: absolute;
+    position: absolute; /* Footer will be positioned relative to the page */
+    bottom: 0; /* Aligns the footer to the bottom of the page */
+    left: 0; /* Ensures it spans the full width */
+    width: 100%; /* Full width */
     background-color: #161A30; /* Dark background */
     color: #ffffff; /* White text */
-    padding: 20px 0; /* Padding for spacing */
+    padding: 10px 0; /* Padding for spacing */
     text-align: center; /* Center-align text */
-    width: 100%; /* Full width */
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for separation */
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for separation */
+    z-index: 1000; /* Ensures it stays above other elements */
+}
+/* Ensure the body has enough padding to prevent content overlap */
+html {
+    position: relative;
+    min-height: 100%; /* Ensures the page takes up the full viewport height */
 }
 
-    .footer a {
-        color: #00bcd4; /* Link color */
-        text-decoration: none; /* Remove underline */
-        transition: color 0.3s ease-in-out; /* Smooth hover effect */
-    }
+body {
+    margin: 0;
+    padding-bottom: 60px; /* Matches the height of the footer */
+}
 
-        .footer a:hover {
-            color: #ffffff; /* Change color on hover */
-        }
+
+.footer a {
+   color: #00bcd4;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer a:hover {
+    color: #ffffff;
+}
 
 /* Smooth transitions for buttons and links */
 button, a {
@@ -63,104 +77,78 @@ button, a {
 /* Add smooth scrolling */
 html {
     scroll-behavior: smooth;
-}
-
-/* Style for monster images */
-.monster-image {
-    width: 250px; /* Fixed width */
-    height: 300px; /* Fixed height */
-    object-fit: cover; /* Ensures the image is not distorted */
-    border: 1px solid #ced4da; /* Optional: Add a border */
-    border-radius: 0.25rem; /* Matches form control border radius */
-    padding: 0.375rem 0.75rem; /* Matches form control padding */
-    background-color: #f8f9fa; /* Matches form control background */
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075); /* Matches form control shadow */
-    /* Header Styling */
-   .header {
-        text-align: center;
-        padding: 1.5rem 0;
-        background-color: #343a40; /* Matches bg-dark */
-        color: #ffffff; /* Matches text-white */
-    }
-
-    /* Welcome Section */
-    .container h2 {
-        margin-top: 1.5rem;
-        color: #0d6efd; /* Matches text-primary */
-    }
-
-    .container p.lead {
-        color: #6c757d; /* Matches text-secondary */
-    }
-
-    /* Monster Images */
-    .monster-image {
-        width: 200px; /* Fixed width */
-        height: 200px; /* Fixed height */
-        object-fit: cover; /* Ensures the image is not distorted */
-        border: 1px solid #ced4da; /* Matches form control border */
-        border-radius: 0.25rem; /* Matches form control border radius */
-        padding: 0.375rem 0.75rem; /* Matches form control padding */
-        background-color: #f8f9fa; /* Matches form control background */
-        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075); /* Matches form control shadow */
-        transition: transform 0.3s ease; /* Optional: Add a hover effect */
-    }
-
-    .monster-image:hover {
-        transform: scale(1.05); /* Optional: Slight zoom on hover */
-    }
-
-    /* Buttons */
-    .btn-primary {
-        margin-top: 1rem;
-    }
-
-    .btn-success {
-        margin-top: 1rem;
-    }
-
-    .btn-warning {
-        margin-top: 1rem;
-    }
-    transition: transform 0.3s ease; /* Optional: Add a hover effect */
-}
-
-.monster-image:hover {
-    transform: scale(1.05); /* Optional: Slight zoom on hover */
-}
-
-
-html {
-  font-size: 14px;
+    position: relative;
+    min-height: 100%;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+    html {
+        font-size: 16px;
+    }
 }
 
 body {
-  margin-bottom: 50px;
+    margin-bottom: 60px; /* Prevent content from hiding under footer */
+}
+
+/* Monster Images */
+.monster-image {
+    width: 360px;
+    height: 380px;
+    object-fit: cover;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    padding: 0.375rem 0.75rem;
+    background-color: #f8f9fa;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+    transition: transform 0.3s ease;
+}
+
+    .monster-image:hover {
+        transform: scale(1.05);
+    }
+
+/* Header Styling */
+.header {
+    text-align: center;
+    padding: 1.5rem 0;
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+/* Welcome Section */
+.container h2 {
+    margin-top: 1.5rem;
+    color: #0d6efd;
+}
+
+.container p.lead {
+    color: #6c757d;
+}
+
+/* Buttons */
+.btn-primary,
+.btn-success,
+.btn-warning {
+    margin-top: 1rem;
 }
 
 /* Sign-In Page Styling */
 .custom-signin-btn {
-    background-color: #6f42c1 !important; /* Button background color */
-    border-color: #6f42c1 !important; /* Button border color */
-    transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth hover effect */
+    background-color: #6f42c1 !important;
+    border-color: #6f42c1 !important;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
     .custom-signin-btn:hover {
-        background-color: #5a379e ; /* Darker shade on hover */
-        border-color: #161A30 !important; /* Darker border on hover */
+        background-color: #5a379e;
+        border-color: #161A30 !important;
     }
+
+.btn:focus, .btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
