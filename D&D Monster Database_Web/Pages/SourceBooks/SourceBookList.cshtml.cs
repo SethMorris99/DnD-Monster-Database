@@ -1,8 +1,11 @@
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using D_D_Monster_Database_Web.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MonsterDB_Business;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace D_D_Monster_Database_Web.Pages.SourceBooks
 {

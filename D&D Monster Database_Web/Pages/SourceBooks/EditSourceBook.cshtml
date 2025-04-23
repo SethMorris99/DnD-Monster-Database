@@ -1,0 +1,54 @@
+﻿@page
+@model D_D_Monster_Database_Web.Pages.SourceBooks.EditSourceBookModel
+@{
+}
+
+<div class="row text-center">
+    <div class="col-12">
+        <label class="form-label fs-1">Edit A Source Book</label>
+    </div>
+</div>
+<form method="post">
+    <div class="row my-2">
+        <div class="text-danger" asp-validation-summary="All"></div>
+        <div class="col-4">
+            <label asp-for="CurrentSourceBook.Title" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="CurrentSourceBook.Title" type="text" class=" form-control" />
+            <span asp-validation-for="CurrentSourceBook.Title" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="CurrentSourceBook.Edition" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="CurrentSourceBook.Edition" type="text" class=" form-control" />
+            <span asp-validation-for="CurrentSourceBook.Edition" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="CurrentSourceBook.YearPublished" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="CurrentSourceBook.YearPublished" type="text" class=" form-control" />
+            <span asp-validation-for="CurrentSourceBook.YearPublished" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <label asp-for="CurrentSourceBook.PageNumber" class="form-label"></label>
+        </div>
+        <div class="col-12">
+            <input asp-for="CurrentSourceBook.PageNumber" type="text" class=" form-control" />
+            <span asp-validation-for="CurrentSourceBook.PageNumber" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-12">
+            <button type="submit" class="form-control btn btn-primary" style="background-color: #6f42c1; border-color: #6f42c1;">Edit Source Book</button>
+        </div>
+    </div>
+</form>
