@@ -48,5 +48,6 @@ namespace D_D_Monster_Database_Web.Pages.SourceBooks
                 // Handle exception (e.g., log it)
                 throw;
             }
+        }
     }
 }

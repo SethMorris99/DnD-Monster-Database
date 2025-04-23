@@ -8,9 +8,11 @@ namespace D_D_Monster_Database_Web.Model
     {
         public int SourceBookID { get; set; }
         [Required]
-        [StringLength(255, ErrorMessage = "Title cannot exceed 255 characters")]
         public string Title { get; set; }
+        [Required]
         public string Edition { get; set; }
+        [Required]
+        [Range(1970,2025, ErrorMessage = "Enter a valid year between 1970 and the current year")]
         public int YearPublished { get; set; }
         public int PageNumber { get; set; }
 

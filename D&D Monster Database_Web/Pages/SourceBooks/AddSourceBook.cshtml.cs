@@ -1,11 +1,14 @@
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using D_D_Monster_Database_Web.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MonsterDB_Business;
 
 namespace D_D_Monster_Database_Web.Pages.SourceBooks
 {
+    [Authorize]
+    [BindProperties]
     public class AddSourceBookModel : PageModel
     {
         public SourceBook NewSourceBook { get; set; } = new SourceBook();
@@ -19,18 +22,19 @@ namespace D_D_Monster_Database_Web.Pages.SourceBooks
             {
                 try
                 {
-                    using(SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
+
+                    using (SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
                     {
+                        string cmdText = "INSERT INTO SourceBook (Title, Edition, YearPublished, PageNumber) VALUES (@Title, @Edition, @YearPublished, @PageNumber);SELECT SCOPE_IDENTITY();";
+                        SqlCommand cmd = new SqlCommand(cmdText, conn);
                         conn.Open();
-                        string sql = "INSERT INTO SourceBook (SourceBookID, Title, Edition, YearPublished, PageNumber) VALUES (@SourceBookID, @Title, @Edition, @YearPublished, @PageNumber)";
-                        using (SqlCommand cmd = new SqlCommand(sql, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@Title", NewSourceBook.Title);
-                            cmd.Parameters.AddWithValue("@Edition", NewSourceBook.Edition);
-                            cmd.Parameters.AddWithValue("@YearPublished", NewSourceBook.YearPublished);
-                            cmd.Parameters.AddWithValue("@PageNumber", NewSourceBook.PageNumber);
-                        }    
+                        cmd.Parameters.AddWithValue("@Title", NewSourceBook.Title);
+                        cmd.Parameters.AddWithValue("@Edition", NewSourceBook.Edition);
+                        cmd.Parameters.AddWithValue("@YearPublished", NewSourceBook.YearPublished);
+                        cmd.Parameters.AddWithValue("@PageNumber", NewSourceBook.PageNumber);
+                        cmd.ExecuteNonQuery();
                     }
+
                     return RedirectToPage("SourceBookList");
                 }
                 catch
