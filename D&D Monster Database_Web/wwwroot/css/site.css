@@ -1,3 +1,133 @@
+/* Navbar Styling */
+.navbar {
+    background-color: #161A30;
+}
+
+    .navbar a,
+    .navbar .nav-link,
+    .navbar-brand {
+        color: #ffffff;
+        transition: color 0.3s ease-in-out;
+    }
+
+        .navbar .nav-link:hover,
+        .navbar-brand:hover {
+            color: #00bcd4;
+        }
+
+/* Card Styling */
+.card {
+    border-left: 5px solid #8B0000;
+    border-radius: 10px;
+}
+
+/* Card Title Styling */
+h3.card-title {
+    font-family: 'Georgia', serif;
+    letter-spacing: 1px;
+}
+
+/* Footer Styling */
+.footer {
+    background-color: #161A30; /* Dark background */
+    color: #ffffff; /* White text */
+    padding: 20px 0; /* Padding for spacing */
+    text-align: center; /* Center-align text */
+    width: 100%; /* Full width */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for separation */
+}
+
+    .footer a {
+        color: #00bcd4; /* Link color */
+        text-decoration: none; /* Remove underline */
+        transition: color 0.3s ease-in-out; /* Smooth hover effect */
+    }
+
+        .footer a:hover {
+            color: #ffffff; /* Change color on hover */
+        }
+
+/* Smooth transitions for buttons and links */
+button, a {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Container Styling */
+.container {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Add smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Style for monster images */
+.monster-image {
+    width: 250px; /* Fixed width */
+    height: 300px; /* Fixed height */
+    object-fit: cover; /* Ensures the image is not distorted */
+    border: 1px solid #ced4da; /* Optional: Add a border */
+    border-radius: 0.25rem; /* Matches form control border radius */
+    padding: 0.375rem 0.75rem; /* Matches form control padding */
+    background-color: #f8f9fa; /* Matches form control background */
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075); /* Matches form control shadow */
+    /* Header Styling */
+   .header {
+        text-align: center;
+        padding: 1.5rem 0;
+        background-color: #343a40; /* Matches bg-dark */
+        color: #ffffff; /* Matches text-white */
+    }
+
+    /* Welcome Section */
+    .container h2 {
+        margin-top: 1.5rem;
+        color: #0d6efd; /* Matches text-primary */
+    }
+
+    .container p.lead {
+        color: #6c757d; /* Matches text-secondary */
+    }
+
+    /* Monster Images */
+    .monster-image {
+        width: 200px; /* Fixed width */
+        height: 200px; /* Fixed height */
+        object-fit: cover; /* Ensures the image is not distorted */
+        border: 1px solid #ced4da; /* Matches form control border */
+        border-radius: 0.25rem; /* Matches form control border radius */
+        padding: 0.375rem 0.75rem; /* Matches form control padding */
+        background-color: #f8f9fa; /* Matches form control background */
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075); /* Matches form control shadow */
+        transition: transform 0.3s ease; /* Optional: Add a hover effect */
+    }
+
+    .monster-image:hover {
+        transform: scale(1.05); /* Optional: Slight zoom on hover */
+    }
+
+    /* Buttons */
+    .btn-primary {
+        margin-top: 1rem;
+    }
+
+    .btn-success {
+        margin-top: 1rem;
+    }
+
+    .btn-warning {
+        margin-top: 1rem;
+    }
+    transition: transform 0.3s ease; /* Optional: Add a hover effect */
+}
+
+.monster-image:hover {
+    transform: scale(1.05); /* Optional: Slight zoom on hover */
+}
+
+
 html {
   font-size: 14px;
 }
@@ -18,6 +148,17 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+  margin-bottom: 50px;
 }
 
+/* Sign-In Page Styling */
+.custom-signin-btn {
+    background-color: #6f42c1 !important; /* Button background color */
+    border-color: #6f42c1 !important; /* Button border color */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth hover effect */
+}
+
+    .custom-signin-btn:hover {
+        background-color: #5a379e ; /* Darker shade on hover */
+        border-color: #161A30 !important; /* Darker border on hover */
+    }
