@@ -6,6 +6,5 @@
         public string MonsterName { get; set; }
         public string ImageURL { get; set; }
         public int HitDice { get; set; }
-
     }
 }

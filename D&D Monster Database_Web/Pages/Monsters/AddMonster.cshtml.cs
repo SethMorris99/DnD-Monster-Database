@@ -97,7 +97,7 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
                     cmd.ExecuteNonQuery();
                 }
                 //Redirect to AddMonster Page
-                return RedirectToPage("/Monsters/AddMonster");
+                return RedirectToPage("/Monsters/BrowseMonsters");
             }
             else
             {
