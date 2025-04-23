@@ -28,7 +28,7 @@
 				<td>@sourceBook.YearPublished</td>
 				<td>@sourceBook.PageNumber</td>
 				<td><a asp-page="./EditSourceBook" asp-route-id="@sourceBook.SourceBookID" class="btn btn-primary">Edit</a></td>
-				<td><button onclick="return confrim('Are you sure?')" class="btn btn-danger" asp-route-id="@sourceBook.SourceBookID" asp-page-handler="Delete">Delete</button></td>
+				<td><button onclick="return confirm('Are you sure?')" class="btn btn-danger" asp-route-id="@sourceBook.SourceBookID" asp-page-handler="Delete">Delete</button></td>
 				</tr>
 		}
 	</tbody>
