@@ -9,6 +9,7 @@ using System.Security.Claims;
 
 namespace D_D_Monster_Database_Web.Pages.SourceBooks
 {
+    [Authorize(Roles = "Admin")]
     public class SourceBookListModel : PageModel
     {
         public List<SourceBook> SourceBookList { get; set; } = new List<SourceBook>();

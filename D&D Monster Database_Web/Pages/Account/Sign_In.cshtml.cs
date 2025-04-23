@@ -27,7 +27,7 @@ namespace D_D_Monster_Database_Web.Pages.Account
                 // If the user is not in the database, redirect to the sign in page
                 using (SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
                 {
-                    string cmdText = "SELECT SystemUserID, UserPassword, UserDisplayName FROM [SystemUser] WHERE UserDisplayName = @UserDisplayName";
+                    string cmdText = "SELECT SystemUserID, AccountTypeID, UserPassword, UserDisplayName FROM [SystemUser] WHERE UserDisplayName = @UserDisplayName";
                     SqlCommand cmd = new SqlCommand(cmdText, conn);
                     cmd.Parameters.AddWithValue("@UserDisplayName", Login.Username);
                     conn.Open();
@@ -36,7 +36,7 @@ namespace D_D_Monster_Database_Web.Pages.Account
                     if (reader.HasRows)
                     {
                         reader.Read();
-                        string passwordHash = reader.GetString(1);
+                        string passwordHash = reader.GetString(2);
 
                         // check if the password is valid
                         if (AppHelper.VerifyPassword(Login.Password, passwordHash))
@@ -49,6 +49,18 @@ namespace D_D_Monster_Database_Web.Pages.Account
 
                             // build the claim list
                             var claims = new List<Claim> { userIdClaim, nameClaim };
+
+                            int accountType = reader.GetInt32(1);
+
+                            // Add role claim based on AccountType
+                            if (accountType == 1)
+                            {
+                                claims.Add(new Claim(ClaimTypes.Role, "Admin"));
+                            }
+                            else
+                            {
+                                claims.Add(new Claim(ClaimTypes.Role, "User"));
+                            }
 
                             // create identity and principal for authentication
                             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
