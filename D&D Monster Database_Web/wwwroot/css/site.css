@@ -165,3 +165,66 @@ body {
 .form-check-input:focus {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
+/* Page title styling */
+.page-title {
+    font-size: 2rem;
+    text-align: center;
+}
+
+/* Add genre button styling */
+.add-genre-button {
+    background-color: #6f42c1;
+    border-color: #6f42c1;
+}
+/* Page title styling */
+.page-title {
+    font-size: 2rem;
+    text-align: center;
+}
+
+/* Add monster button styling */
+.add-monster-button {
+    background-color: #6f42c1;
+    border-color: #6f42c1;
+}
+/* Page title styling */
+.page-title {
+    font-size: 2rem;
+    text-align: center;
+}
+
+/* Add source book button styling */
+.add-sourcebook-button {
+    background-color: #6f42c1;
+    border-color: #6f42c1;
+}
+/* Page title styling */
+.page-title {
+    font-size: 2rem;
+    text-align: center;
+}
+
+/* Edit source book button styling */
+.edit-sourcebook-button {
+    background-color: #6f42c1;
+    border-color: #6f42c1;
+}
+/* General body styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9fafc;
+    color: #333;
+}
+
+/* Heading styles */
+h1, h2 {
+    color: #004aad;
+}
+
+/* Privacy container styling */
+.privacy-container {
+    padding: 1.5rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}

@@ -5,7 +5,7 @@
 
 <div class="row text-center">
     <div class="col-12">
-        <label class="form-label fs-1">Add Your Monster</label>
+        <label class="form-label page-title">Add Your Monster</label>
     </div>
 </div>
 <form method="post">
@@ -15,7 +15,7 @@
             <label asp-for="NewMonster.MonsterName" class="form-label"></label>
         </div>
         <div class="col-12">
-            <input asp-for="NewMonster.MonsterName" type="text" class=" form-control" />
+            <input asp-for="NewMonster.MonsterName" type="text" class="form-control" />
             <span asp-validation-for="NewMonster.MonsterName" class="text-danger"></span>
         </div>
     </div>
@@ -24,7 +24,7 @@
             <label asp-for="NewMonster.ArmorClass" class="form-label"></label>
         </div>
         <div class="col-12">
-            <input asp-for="NewMonster.ArmorClass" type="text" class=" form-control" />
+            <input asp-for="NewMonster.ArmorClass" type="text" class="form-control" />
             <span asp-validation-for="NewMonster.ArmorClass" class="text-danger"></span>
         </div>
     </div>
@@ -33,7 +33,7 @@
             <label asp-for="NewMonster.HitDice" class="form-label"></label>
         </div>
         <div class="col-12">
-            <input asp-for="NewMonster.HitDice" type="text" class=" form-control" />
+            <input asp-for="NewMonster.HitDice" type="text" class="form-control" />
             <span asp-validation-for="NewMonster.HitDice" class="text-danger"></span>
         </div>
     </div>
@@ -42,7 +42,7 @@
             <label asp-for="NewMonster.Attacks" class="form-label"></label>
         </div>
         <div class="col-12">
-            <input asp-for="NewMonster.Attacks" type="text" class=" form-control" />
+            <input asp-for="NewMonster.Attacks" type="text" class="form-control" />
             <span asp-validation-for="NewMonster.Attacks" class="text-danger"></span>
         </div>
     </div>
@@ -51,16 +51,16 @@
             <label asp-for="NewMonster.Alignment" class="form-label"></label>
         </div>
         <div class="col-12">
-            <input asp-for="NewMonster.Alignment" type="text" class=" form-control" />
+            <input asp-for="NewMonster.Alignment" type="text" class="form-control" />
             <span asp-validation-for="NewMonster.Alignment" class="text-danger"></span>
         </div>
     </div>
-    <div class="row my-2"> 
+    <div class="row my-2">
         <div class="col-4">
             <label asp-for="NewMonster.XP_Award" class="form-label"></label>
         </div>
         <div class="col-12">
-            <input asp-for="NewMonster.XP_Award" type="text" class=" form-control" />
+            <input asp-for="NewMonster.XP_Award" type="text" class="form-control" />
             <span asp-validation-for="NewMonster.XP_Award" class="text-danger"></span>
         </div>
     </div>
@@ -69,7 +69,7 @@
             <label asp-for="NewMonster.NumberAppearing" class="form-label"></label>
         </div>
         <div class="col-12">
-            <input asp-for="NewMonster.NumberAppearing" type="text" class=" form-control" />
+            <input asp-for="NewMonster.NumberAppearing" type="text" class="form-control" />
             <span asp-validation-for="NewMonster.NumberAppearing" class="text-danger"></span>
         </div>
     </div>
@@ -87,7 +87,7 @@
             <label asp-for="NewMonster.SpecialAbilities" class="form-label"></label>
         </div>
         <div class="col-12">
-            <input asp-for="NewMonster.SpecialAbilities" type="text" class=" form-control" />
+            <input asp-for="NewMonster.SpecialAbilities" type="text" class="form-control" />
             <span asp-validation-for="NewMonster.SpecialAbilities" class="text-danger"></span>
         </div>
     </div>
@@ -96,7 +96,7 @@
             <label asp-for="NewMonster.Description" class="form-label"></label>
         </div>
         <div class="col-12">
-            <input asp-for="NewMonster.Description" type="text" class=" form-control" />
+            <input asp-for="NewMonster.Description" type="text" class="form-control" />
             <span asp-validation-for="NewMonster.Description" class="text-danger"></span>
         </div>
     </div>
@@ -105,7 +105,7 @@
             <label asp-for="NewMonster.ImageURL" class="form-label"></label>
         </div>
         <div class="col-12">
-            <input asp-for="NewMonster.ImageURL" type="text" class=" form-control" />
+            <input asp-for="NewMonster.ImageURL" type="text" class="form-control" />
             <span asp-validation-for="NewMonster.ImageURL" class="text-danger"></span>
         </div>
     </div>
@@ -114,7 +114,7 @@
             <label asp-for="NewMonster.SourceBookID" class="form-label"></label>
         </div>
         <div class="col-12">
-            <select asp-for="NewMonster.SourceBookID" class="form-control" asp-items = "Model.SourceBook"></select>
+            <select asp-for="NewMonster.SourceBookID" class="form-control" asp-items="Model.SourceBook"></select>
             <span asp-validation-for="NewMonster.SourceBookID" class="text-danger"></span>
         </div>
     </div>
@@ -122,17 +122,17 @@
         <div class="col-4">
             <label class="form-label"></label>
         </div>
-        <div class="col-12"> 
+        <div class="col-12">
             @foreach (var g in Model.Genres)
             {
-                <input type="checkbox" value="@g.GenreID" class="form-check-input" name="SelectedGenreID" checked="@g.IsSelected"/>
+                <input type="checkbox" value="@g.GenreID" class="form-check-input" name="SelectedGenreID" checked="@g.IsSelected" />
                 <label class="form-label">@g.GenreName</label>
             }
         </div>
     </div>
     <div class="row my-2">
         <div class="col-12">
-            <button type="submit" class="form-control btn btn-primary" style="background-color: #6f42c1; border-color: #6f42c1;">Add Monster</button>
+            <button type="submit" class="form-control btn btn-primary add-monster-button">Add Monster</button>
         </div>
     </div>
-    </form>
+</form>
