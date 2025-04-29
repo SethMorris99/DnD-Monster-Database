@@ -15,7 +15,7 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
         {
             PopulateMonsterList();
         }
-        
+
         private void PopulateMonsterList()
         {
             using (SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
@@ -57,20 +57,20 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
         {
             // This method populates the genres for a specific monster
             List<string> geners = new List<string>();
-            
+
             // Open a connection to the database using the connection string from AppHelper
             using (SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
             {
                 // This is the SQL query to get the genre names for a specific monster
-                string cmdText = "SELECT g.GenreName FROM Genre g " + 
-                    "JOIN MonsterGenre mg on g.GenreID = mg.GenreID " + 
+                string cmdText = "SELECT g.GenreName FROM Genre g " +
+                    "JOIN MonsterGenre mg on g.GenreID = mg.GenreID " +
                     "WHERE mg.MonsterID = @MonsterID";
                 // Create a SqlCommand object with the query and the connection
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@MonsterID", MonsterID);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
-                
+
                 // Execute the command and read the results
                 if (reader.HasRows)
                 {
@@ -78,25 +78,10 @@ namespace D_D_Monster_Database_Web.Pages.Monsters
                     {
                         geners.Add(reader.GetString(0));
                     }
-                   
+
                 }
             }
             return geners;
-        }
-
-        public IActionResult OnPostDelete(int id)
-        {
-            //Delete the monster form the database 
-            using (SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
-            {
-                string cmdText = "Delete From MonsterGenre where MonsterID = @MonsterID; Delete from Monster where MonsterID = @MonsterID" ;
-                SqlCommand cmd = new SqlCommand(cmdText, conn);
-                cmd.Parameters.AddWithValue("@MonsterID", id);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-            }
-            PopulateMonsterList();
-            return Page();
         }
     }
 }

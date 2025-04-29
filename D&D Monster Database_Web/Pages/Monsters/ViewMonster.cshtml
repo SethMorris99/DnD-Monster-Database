@@ -1,0 +1,45 @@
+﻿@page "{id:int}"
+@model D_D_Monster_Database_Web.Pages.Monsters.ViewMonsterModel
+@{
+    ViewData["Title"] = "Monster Details";
+}
+
+<div class="container">
+    <div class="card my-4 p-4 shadow">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="@Model.Monster.ImageURL" alt="Monster Image" class="img-fluid rounded" />
+            </div>
+            <div class="col-md-8">
+                <h2>@Model.Monster.MonsterName</h2>
+                <p><strong>Description:</strong> @Model.Monster.Description</p>
+                <p><strong>Source Book:</strong> @Model.Monster.SourceBookTitle</p>
+                <p><strong>Armor Class:</strong> @Model.Monster.ArmorClass</p>
+                <p><strong>Hit Dice:</strong> @Model.Monster.HitDice</p>
+                <p><strong>Attacks:</strong> @Model.Monster.Attacks</p>
+                <p><strong>Alignment:</strong> @Model.Monster.Alignment</p>
+                <p><strong>XP Award:</strong> @Model.Monster.XP_Award</p>
+                <p><strong>Number Appearing:</strong> @Model.Monster.NumberAppearing</p>
+                <p><strong>Treasure Type:</strong> @Model.Monster.TreasureType</p>
+                <p><strong>Special Abilities:</strong> @Model.Monster.SpecialAbilities</p>
+                <p><strong>Genres:</strong> @string.Join(", ", Model.Monster.GenreNames)</p>
+                <div class="mt-3 d-flex gap-2">
+                    <a class="btn btn-secondary" href="/Monsters/BrowseMonsters">
+                        <i class="bi bi-arrow-left me-1"></i> Back to List
+                    </a>
+
+                    <a class="btn btn-warning" asp-page="/Monsters/EditMonster" asp-route-id="@Model.Monster.MonsterID">
+                        <i class="bi bi-pencil-square me-1"></i> Edit
+                    </a>
+
+                    <form method="post" asp-page-handler="Delete" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this monster?');">
+                        <input type="hidden" name="id" value="@Model.Monster.MonsterID" />
+                        <button type="submit" class="btn btn-danger" title="Delete Monster">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
