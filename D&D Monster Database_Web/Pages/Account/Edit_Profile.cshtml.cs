@@ -27,10 +27,11 @@ namespace D_D_Monster_Database_Web.Pages.Account
                 {
                     Console.WriteLine($"{state.Key}: {string.Join(", ", state.Value.Errors.Select(e => e.ErrorMessage))}");
                 }
-                return Page(); // Stay on Edit_Profile if errors
+                return RedirectToPage("AccessDenied"); // Stay on Edit_Profile if errors
             }
-
+           
             int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
 
             using (SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
             {
@@ -62,6 +63,14 @@ namespace D_D_Monster_Database_Web.Pages.Account
 
         private void PopulateUserProfile(int userId)
         {
+            if (User.IsInRole("Admin"))
+            {
+                UserProfile.AccountType = "Admin";
+            }
+            else
+            {
+                UserProfile.AccountType = "User";
+            }
             using (SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
             {
                 string cmdText = @"
