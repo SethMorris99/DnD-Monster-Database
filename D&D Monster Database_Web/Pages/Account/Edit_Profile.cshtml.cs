@@ -27,7 +27,7 @@ namespace D_D_Monster_Database_Web.Pages.Account
                 {
                     Console.WriteLine($"{state.Key}: {string.Join(", ", state.Value.Errors.Select(e => e.ErrorMessage))}");
                 }
-                return RedirectToPage("AccessDenied"); // Stay on Edit_Profile if errors
+                return Page(); // Stay on Edit_Profile if errors
             }
            
             int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
