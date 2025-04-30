@@ -17,6 +17,7 @@ namespace D_D_Monster_Database_Web.Model
 
         [Display(Name = "Armor Class")]
 
+        [Range(0, int.MaxValue, ErrorMessage = "Must be a positive integer")]
         public int ArmorClass { get; set; }
         
         [Display(Name = "Hit Dice")]
@@ -29,7 +30,7 @@ namespace D_D_Monster_Database_Web.Model
         public string Alignment { get; set; }
 
         [Display(Name = "XP Awards")]
-
+        [Range(0, int.MaxValue, ErrorMessage = "Must be a positive integer")]
         public int XP_Award { get; set; }
 
         [Display(Name = "Number Appearing")]
