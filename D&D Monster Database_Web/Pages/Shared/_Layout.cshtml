@@ -21,37 +21,37 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Index">Home</a>
+                            <a class="nav-link" asp-area="" asp-page="/Index"> <i class="bi bi-house-door-fill"></i> Home</a>
                         </li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link" href="/Account/Sign_Out">Sign Out</a>
+                                <a class="nav-link" href="/Account/Sign_Out"> <i class="bi bi-box-arrow-left"></i> Sign Out</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/Monsters/BrowseMonsters">Browse Monsters</a>
+                                <a class="nav-link" href="/Monsters/BrowseMonsters"><i class="bi bi-binoculars-fill"></i> Browse Monsters</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/Account/Profile">Profile</a>
+                                <a class="nav-link" href="/Account/Profile"> <i class="bi bi-person-circle"></i> Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/SourceBooks/SourceBookList">Source Books</a>
+                                <a class="nav-link" href="/SourceBooks/SourceBookList"><i class="bi bi-book-fill"></i> Source Books</a>
                             </li>
                         }
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-page="/Account/Registration">Register</a>
+                                <a class="nav-link" asp-area="" asp-page="/Account/Registration"> <i class="bi bi-person-fill-add"></i> Register</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-page="/Account/Sign_In">Sign In</a>
+                                <a class="nav-link" asp-area="" asp-page="/Account/Sign_In"> <i class="bi bi-box-arrow-in-right"></i> Sign In</a>
                             </li>
                         }
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Account/About">About</a>
+                            <a class="nav-link" asp-area="" asp-page="/Account/About"><i class="bi bi-info-circle-fill"></i> About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Privacy">Privacy</a>
+                            <a class="nav-link" asp-area="" asp-page="/Privacy"> <i class="bi bi-shield-fill"></i> Privacy</a>
                         </li>
                     </ul>
                 </div>

@@ -66,7 +66,6 @@
                     <label for="email" class="form-label">Email Address:</label>
                     <input type="email" class="form-control" id="email" value="@Model.UserProfile.Email" readonly />
                 </div>
-
                 <!-- Account Type -->
                 <div class="mb-3">
                     <label for="accountType" class="form-label">Account Type:</label>
@@ -81,21 +80,13 @@
                 <!-- Edit Button -->
                 <div class="row my-4">
                     <div class="col-12">
-                        <button class="form-control btn btn-primary" style="background-color: #6f42c1; border-color: #6f42c1;" onclick="window.location.href='/Account/EditProfile'"> <i class="bi bi-pencil-square"></i> Edit Profile</button>
+                        <button class="form-control btn btn-primary" style="background-color: #6f42c1; border-color: #6f42c1;" onclick="window.location.href='/Account/Edit_Profile'"> <i class="bi bi-pencil-square"></i> Edit Profile</button>
                     </div>
                 </div> 
                
             </div>
         </div>
     </div>
-
-
-
-    <footer class="bg-light py-3 mt-4">
-        <div class="container text-center">
-            <p>&copy; 2025 D&D Monster Database</p>
-        </div>
-    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

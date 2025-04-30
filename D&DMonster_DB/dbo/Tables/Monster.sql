@@ -3,7 +3,7 @@
     [SourceBookID]     INT            NOT NULL,
     [MonsterName]      NVARCHAR (250) NOT NULL,
     [ArmorClass]       INT            NOT NULL,
-    [HitDice]          INT            NOT NULL,
+    [HitDice]          NVARCHAR (20)  NOT NULL,
     [Attacks]          NVARCHAR (500) NOT NULL,
     [Alignment]        NVARCHAR (20)  NOT NULL,
     [XP_award]         INT            NOT NULL,

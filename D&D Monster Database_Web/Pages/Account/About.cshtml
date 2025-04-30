@@ -4,24 +4,44 @@
     Layout = Model.Layout;
     ViewData["Title"] = "About";
 }
-<h1>@ViewData["Title"]</h1>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f9fafc;
+        color: #333;
+    }
 
-<p>This application is a database-driven system designed to manage and display monster data for fantasy, sci-fi, horror, and other genres.</p>
+    h1, h2 {
+        color: #004aad;
+    }
 
-<h2>Features</h2>
-<ul>
-    <li>Monster creation and editing</li>
-    <li>Ability management and categorization</li>
-    <li>Genre assignment for each monster</li>
-    <li>Support for XP, attacks, treasure types, and more</li>
-</ul>
+    .about-container {
+        padding: 1.5rem;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+</style>
+<div class="about-container">
+    <h1>@ViewData["Title"]</h1>
 
-<h2>Technology Stack</h2>
-<ul>
-    <li>ASP.NET Core Razor Pages</li>
-    <li>SQL Server / LocalDB</li>
-    <li>C#, HTML/CSS, and optionally JavaScript</li>
-</ul>
+    <p>This application is a database-driven system designed to manage and display monster data for fantasy, sci-fi, horror, and other genres.</p>
 
-<h2>Purpose</h2>
-<p>This project was built as part of a coursework or personal learning to demonstrate full-stack development skills using .NET technologies and databases.</p>
+    <h2>Features</h2>
+    <ul>
+        <li>Monster creation and editing</li>
+        <li>Ability management and categorization</li>
+        <li>Genre assignment for each monster</li>
+        <li>Support for XP, attacks, treasure types, and more</li>
+    </ul>
+
+    <h2>Technology Stack</h2>
+    <ul>
+        <li>ASP.NET Core Razor Pages</li>
+        <li>SQL Server / LocalDB</li>
+        <li>C#, HTML/CSS, and optionally JavaScript</li>
+    </ul>
+
+    <h2>Purpose</h2>
+    <p>This project was built as part of a coursework or personal learning to demonstrate full-stack development skills using .NET technologies and databases.</p>
+</div> 

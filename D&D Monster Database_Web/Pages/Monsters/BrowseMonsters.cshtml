@@ -1,115 +1,38 @@
 ﻿@page
 @model D_D_Monster_Database_Web.Pages.Monsters.BrowseMonstersModel
 @{
+    ViewData["Title"] = "Browse Monsters";
 }
-<div class="row text-center mb-4">
-    <div class="col-12">
-        <h1 class="display-4 text-primary fw-bold">🧙 Browse Monsters</h1>
-    </div>
+
+<h1 class="text-center mb-4">@ViewData["Title"]</h1>
+<div class="text-end mb-3">
+    <a class="btn btn-success" asp-page="/Monsters/AddMonster">
+        <i class="bi bi-plus-circle me-1"></i> Add Monster
+    </a>
 </div>
 
-<div class="row mb-4">
-    <div class="col-12 text-end">
-        <a asp-page="AddMonster" class="btn btn-success btn-lg shadow-sm">+ Add Monster</a>
-    </div>
-</div>
 
-<form method="post">
-    @if (Model.Monsters.Count != 0)
+<div class="container">
+    @foreach (var monster in Model.Monsters)
     {
-        @foreach (var monster in Model.Monsters)
-        {
-            <div class="card mb-5 shadow-lg border-0">
-                <!-- Top image -->
-                <img src="@monster.ImageURL"
-                     class="card-img-top"
-                     alt="@monster.MonsterName"
-                     style="width: 100%; height: 300px; object-fit: contain; background-color: #111;" />
-
-                <!-- Card body -->
-                <div class="card-body p-4">
-                    <h3 class="card-title text-danger">@monster.MonsterName</h3>
-                    <hr />
-
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <strong>Source Book:</strong>
-                            <div class="form-control-plaintext">@monster.SourceBookTitle</div>
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <strong>Hit Dice:</strong>
-                            <div class="form-control-plaintext">@monster.HitDice</div>
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <strong>Attacks:</strong>
-                            <div class="form-control-plaintext">@monster.Attacks</div>
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <strong>Alignment:</strong>
-                            <div class="form-control-plaintext">@monster.Alignment</div>
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <strong>Armor Class:</strong>
-                            <div class="form-control-plaintext">@monster.ArmorClass</div>
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <strong>XP Award:</strong>
-                            <div class="form-control-plaintext">@monster.XP_Award</div>
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <strong>Number Appearing:</strong>
-                            <div class="form-control-plaintext">@monster.NumberAppearing</div>
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <strong>Treasure Type:</strong>
-                            <div class="form-control-plaintext">@monster.TreasureType</div>
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <strong>Special Abilities:</strong>
-                            <div class="form-control-plaintext">@monster.SpecialAbilities</div>
-                        </div>
-
-                        @if (monster.GenreNames != null && monster.GenreNames.Count > 0)
-                        {
-                            <div class="col-md-6 mb-3">
-                                <strong>Genres:</strong>
-                                <div class="form-control-plaintext">
-                                    @string.Join(", ", monster.GenreNames)
-                                </div>
-                            </div>
-                        }
-
-                        <div class="col-12 mb-3">
-                            <strong>Description:</strong>
-                            <div class="form-control bg-light p-3 rounded" style="min-height: 80px;">
-                                @monster.Description
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <!-- Action buttons -->
-                    <div class="text-end mt-4">
-                        <a asp-page="EditMonster" asp-route-id="@monster.MonsterID" class="btn btn-outline-primary me-2"><i class="bi bi-pencil-fill"></i> Edit</a>
-                        <button type="submit" asp-page-handler="Delete" asp-route-id="@monster.MonsterID" class="btn btn-outline-danger" onclick="return confirm('Are you sure?')"><i class="bi bi-trash-fill"></i> Delete</button>
-                    </div>
+        <div class="card my-3 p-3">
+            <div class="row g-2">
+                <div class="col-md-2 d-flex align-items-center justify-content-center">
+                    @if (!string.IsNullOrEmpty(monster.ImageURL))
+                    {
+                        <img src="@monster.ImageURL" alt="Monster Image" class="img-fluid rounded" style="max-height: 100px;" />
+                    }
+                    else
+                    {
+                        <div class="text-muted">No Image</div>
+                    }
+                </div>
+                <div class="col-md-10">
+                    <h5>@monster.MonsterName</h5>
+                    <p class="mb-1">@monster.Description</p>
+                    <a class="btn btn-outline-primary btn-sm" asp-page="/Monsters/ViewMonster" asp-route-id="@monster.MonsterID"><i class="bi bi-eye me-1"></i>View Details</a>
                 </div>
             </div>
-        }
-    }
-    else
-    {
-        <div class="alert alert-warning text-center">
-            <strong>No Monsters Found.</strong> Click <em>Add Monster</em> to add a new one!
         </div>
     }
-</form>
+</div>
