@@ -22,11 +22,11 @@ namespace D_D_Monster_Database_Web.Pages.Account
             {
                 string cmdText = @"
             SELECT 
+                SystemUserID,
                 UserFirstName, 
                 UserLastName, 
                 UserDisplayName, 
                 UserEmail, 
-                UserPassword, 
                 ProfileImageURL, 
                 AccountType.AccountTypeName, 
                 LastLoginTime
@@ -41,18 +41,52 @@ namespace D_D_Monster_Database_Web.Pages.Account
                 {
                     Users.Add(new AccountView
                     {
-                        FirstName = reader.GetString(0),        // UserFirstName
-                        LastName = reader.GetString(1),         // UserLastName
-                        Username = reader.GetString(2),         // UserDisplayName
-                        Email = reader.GetString(3),            // UserEmail
-                        Password = reader.GetString(4),         // UserPassword
-                        ProfileImageURL = reader.GetString(5),  // ProfileImageURL
-                        AccountType = reader.GetString(6),      // AccountTypeName
-                        LastLoginTime = reader.GetDateTime(7)   // LastLoginTime
+                        SystemUserID = reader["SystemUserID"].ToString(),  // SystemUserID
+                        FirstName = reader["UserFirstName"].ToString(),    // UserFirstName
+                        LastName = reader["UserLastName"].ToString(),      // UserLastName
+                        Username = reader["UserDisplayName"].ToString(),   // UserDisplayName
+                        Email = reader["UserEmail"].ToString(),            // UserEmail
+                        ProfileImageURL = reader["ProfileImageURL"].ToString(), // ProfileImageURL
+                        AccountType = reader["AccountTypeName"].ToString(), // AccountTypeName
+                        LastLoginTime = Convert.ToDateTime(reader["LastLoginTime"]) // LastLoginTime
                     });
                 }
 
                 reader.Close();
+            }
+        }
+
+        public IActionResult OnPostDelete(int id)
+        {
+            try
+            {
+                if (User.IsInRole("Admin") == false)
+                {
+                    return RedirectToPage("/Account/AccessDenied");
+                }
+                using (SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
+                {
+                    string cmdText = "DELETE FROM SystemUser WHERE SystemUserID = @SystemUserID";
+                    SqlCommand cmd = new SqlCommand(cmdText, conn);
+                    cmd.Parameters.AddWithValue("@SystemUserID", id);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+
+                // Refresh the user list after deletion
+                PopulateUserList();
+
+                // Redirect back to the same page to reflect changes
+                return RedirectToPage();
+            }
+            catch (Exception ex)
+            {
+                // Log the error (optional)
+                Console.WriteLine($"Error deleting user: {ex.Message}");
+
+                // Optionally, add a model error to display a message to the user
+                ModelState.AddModelError(string.Empty, "An error occurred while deleting the user.");
+                return Page();
             }
         }
     }

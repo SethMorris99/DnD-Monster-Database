@@ -33,6 +33,7 @@
 						<td>@user.Email</td>
 						<td>@user.AccountType</td>
 						<td>@user.LastLoginTime.ToString("g")</td>
+						<td><button onclick="return confirm('Are you sure?')" class="btn btn-danger" asp-route-id="@user.SystemUserID" asp-page-handler="Delete"><i class="bi bi-trash-fill"></i> Delete</button></td>
 					</tr>
 				}
 			}
