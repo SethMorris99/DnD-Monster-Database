@@ -45,7 +45,7 @@ namespace D_D_Monster_Database_Web.Pages.Account
                             var userIdClaim = new Claim(ClaimTypes.NameIdentifier, reader.GetInt32(0).ToString());
 
                             // create a name claim for UserDisplayName
-                            var nameClaim = new Claim(ClaimTypes.Name, reader.GetString(2));
+                            var nameClaim = new Claim(ClaimTypes.Name, reader.GetString(3));
 
                             // build the claim list
                             var claims = new List<Claim> { userIdClaim, nameClaim };

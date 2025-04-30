@@ -56,33 +56,52 @@ namespace D_D_Monster_Database_Web.Pages.SourceBooks
 
         public IActionResult OnPostDelete(int id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return RedirectToPage("/Account/AccessDenied");
+            }
+
             try
             {
-                if (User.IsInRole("Admin") == false)
-                {
-                    return RedirectToPage("/Account/AccessDenied");
-                }
-
                 using (SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
                 {
                     conn.Open();
-                    string sql = "DELETE FROM SourceBook WHERE SourceBookID = @SourceBookID";
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@SourceBookID", id);
-                        cmd.ExecuteNonQuery();
 
+                    //check if any monsters use this source book
+                    string checkSql = "SELECT COUNT(*) FROM Monster WHERE SourceBookID = @SourceBookID";
+                    using (SqlCommand checkCmd = new SqlCommand(checkSql, conn))
+                    {
+                        checkCmd.Parameters.AddWithValue("@SourceBookID", id);
+                        int count = (int)checkCmd.ExecuteScalar();
+
+                        if (count > 0)
+                        {
+                            // cannot delete if any monsters use it
+                            TempData["ErrorMessage"] = "Cannot delete this source book because it is still used by one or more monsters.";
+                            return RedirectToPage("SourceBookList");
+                        }
+                    }
+
+                    //Safe to delete
+                    string deleteSql = "DELETE FROM SourceBook WHERE SourceBookID = @SourceBookID";
+                    using (SqlCommand deleteCmd = new SqlCommand(deleteSql, conn))
+                    {
+                        deleteCmd.Parameters.AddWithValue("@SourceBookID", id);
+                        deleteCmd.ExecuteNonQuery();
                     }
                 }
+
                 return RedirectToPage("SourceBookList");
             }
-            catch 
+            catch (Exception ex)
             {
-                throw;
-            }
+                // Log the error (optional)
+                Console.WriteLine($"Error deleting sourcebook: {ex.Message}");
 
-            // If we reach here, something went wrong
-            return Page();
+                // Optionally, add a model error to display a message to the user
+                ModelState.AddModelError(string.Empty, "An error occurred while deleting the sourcebook.");
+                return Page();
+            }
         }
     }
 }

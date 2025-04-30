@@ -64,18 +64,39 @@ namespace D_D_Monster_Database_Web.Pages.Account
                 {
                     return RedirectToPage("/Account/AccessDenied");
                 }
+
                 using (SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
                 {
+                    conn.Open();
+
+                    // Check if the user is an admin (AccountTypeID = 1)
+                    string roleCheckQuery = "SELECT AccountTypeID FROM SystemUser WHERE SystemUserID = @SystemUserID";
+                    SqlCommand roleCheckCmd = new SqlCommand(roleCheckQuery, conn);
+                    roleCheckCmd.Parameters.AddWithValue("@SystemUserID", id);
+                    int accountTypeId = Convert.ToInt32(roleCheckCmd.ExecuteScalar());
+
+                    if (accountTypeId == 1)
+                    {
+
+                        int adminCount = GetAdminCount(conn);
+
+                        if (adminCount <= 1)
+                        {
+                            TempData["ErrorMessage"] = "Cannot delete the only remaining admin.";
+                            return RedirectToPage();
+
+                        }
+                    }
                     string cmdText = "DELETE FROM SystemUser WHERE SystemUserID = @SystemUserID";
                     SqlCommand cmd = new SqlCommand(cmdText, conn);
                     cmd.Parameters.AddWithValue("@SystemUserID", id);
-                    conn.Open();
                     cmd.ExecuteNonQuery();
                 }
 
                 // Refresh the user list after deletion
                 PopulateUserList();
 
+                TempData["SuccessMessage"] = "User deleted successfully.";
                 // Redirect back to the same page to reflect changes
                 return RedirectToPage();
             }
@@ -89,5 +110,53 @@ namespace D_D_Monster_Database_Web.Pages.Account
                 return Page();
             }
         }
+        public IActionResult OnPostChangeRole(int UserID, int NewRole)
+        {
+            using (SqlConnection conn = new SqlConnection(AppHelper.GetDBConnectionString()))
+            {
+                conn.Open();
+
+                // Get current role of the user
+                string getRoleQuery = "SELECT AccountTypeID FROM SystemUser WHERE SystemUserID = @UserID";
+                SqlCommand getRoleCmd = new SqlCommand(getRoleQuery, conn);
+                getRoleCmd.Parameters.AddWithValue("@UserID", UserID);
+                int currentRole = (int)getRoleCmd.ExecuteScalar();
+
+                // Prevent demoting the only admin
+                if (currentRole == 1 && NewRole != 1)
+                {
+                    int adminCount = GetAdminCount(conn);
+                    if (adminCount <= 1)
+                    {
+                        TempData["ErrorMessage"] = "Cannot demote the only remaining admin.";
+                        return RedirectToPage();
+
+                    }
+                }
+
+                // Update role
+                string updateQuery = "UPDATE SystemUser SET AccountTypeID = @NewRole WHERE SystemUserID = @UserID";
+                SqlCommand updateCmd = new SqlCommand(updateQuery, conn);
+                updateCmd.Parameters.AddWithValue("@NewRole", NewRole);
+                updateCmd.Parameters.AddWithValue("@UserID", UserID);
+                updateCmd.ExecuteNonQuery();
+            }
+
+            TempData["SuccessMessage"] = "User role updated successfully.";
+            return RedirectToPage();
+        }
+
+
+        // get number of admins useful for ensuring we keep 1
+        private int GetAdminCount(SqlConnection conn)
+        {
+            string query = "SELECT COUNT(*) FROM SystemUser WHERE AccountTypeID = 1";
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                return (int)cmd.ExecuteScalar();
+            }
+        }
+
+
     }
 }
