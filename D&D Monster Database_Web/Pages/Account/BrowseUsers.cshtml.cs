@@ -77,7 +77,6 @@ namespace D_D_Monster_Database_Web.Pages.Account
 
                     if (accountTypeId == 1)
                     {
-
                         int adminCount = GetAdminCount(conn);
 
                         if (adminCount <= 1)
@@ -155,8 +154,9 @@ namespace D_D_Monster_Database_Web.Pages.Account
             {
                 return (int)cmd.ExecuteScalar();
             }
+}
+
         }
 
 
     }
-}

@@ -33,6 +33,8 @@
                 <th>Email</th>
                 <th>Account Type</th>
                 <th>Last Login</th>
+                <th>Change Role</th>
+                <th>Delete</th>
                 <th></th>
             </tr>
         </thead>
@@ -69,13 +71,17 @@
                                 <button type="submit" class="btn btn-outline-primary btn-sm" title="Apply Role">
                                     <i class="bi bi-check"></i>
                                 </button>
+                                <td><button onclick="return confirm('Are you sure?')" class="btn btn-danger" asp-route-id="@user.SystemUserID" asp-page-handler="Delete"><i class="bi bi-trash-fill"></i></button></td>
                             </form>
+                        }
+                        else{
+                            <td>----</td>
                         }
                     </td>
 
 
 
-                    <td><button onclick="return confirm('Are you sure?')" class="btn btn-danger" asp-route-id="@user.SystemUserID" asp-page-handler="Delete"><i class="bi bi-trash-fill"></i> Delete</button></td>
+                    
                 </tr>
 
             }
