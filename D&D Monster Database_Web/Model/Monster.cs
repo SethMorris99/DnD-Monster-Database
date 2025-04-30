@@ -43,8 +43,6 @@ namespace D_D_Monster_Database_Web.Model
         [Display(Name = "Special Abilities")]
 
         public string SpecialAbilities { get; set; }
-
-
         public string Description { get; set; }
 
         [Display(Name = "Image URL")]
